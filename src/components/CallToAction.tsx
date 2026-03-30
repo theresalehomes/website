@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export default function CallToAction() {
@@ -24,13 +25,13 @@ export default function CallToAction() {
           Let us help you navigate the real estate market with confidence and
           expertise. Your perfect home is waiting.
         </p>
-        <a
-          href="#contact"
+        <Link
+          href="/contact"
           className="group inline-flex items-center gap-4 px-12 py-5 bg-gold text-white text-[13px] tracking-[0.25em] uppercase font-heading hover:bg-gold-light transition-all duration-500"
         >
           <span>Get Started Today</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </a>
+        </Link>
       </div>
     </section>
   );

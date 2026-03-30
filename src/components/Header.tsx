@@ -2,26 +2,32 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Listings", href: "#listings" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Listings", href: "/listings" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   return (
     <header
@@ -33,7 +39,7 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
         <Link
-          href="#home"
+          href="/"
           className="font-heading text-white text-2xl font-light tracking-[0.15em] uppercase"
         >
           Theresa <span className="text-gold font-semibold">Le</span> Homes
@@ -45,7 +51,11 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-white/80 text-[13px] tracking-[0.2em] uppercase hover:text-gold transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-gold after:transition-all after:duration-300 hover:after:w-full"
+              className={`text-[13px] tracking-[0.2em] uppercase transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:bg-gold after:transition-all after:duration-300 ${
+                isActive(link.href)
+                  ? "text-gold after:w-full"
+                  : "text-white/80 after:w-0 hover:text-gold hover:after:w-full"
+              }`}
             >
               {link.label}
             </Link>
@@ -79,7 +89,9 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-white text-lg tracking-[0.3em] uppercase hover:text-gold transition-colors"
+              className={`text-lg tracking-[0.3em] uppercase transition-colors ${
+                isActive(link.href) ? "text-gold" : "text-white hover:text-gold"
+              }`}
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
