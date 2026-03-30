@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Bed, Bath, Square } from "lucide-react";
+import { ChevronLeft, ChevronRight, Bed, Bath, Maximize } from "lucide-react";
 
 const listings = [
   {
@@ -83,41 +83,46 @@ export default function Listings() {
   );
 
   return (
-    <section id="listings" className="py-20 md:py-28 bg-gray-100">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="listings" className="py-24 md:py-32 bg-cream">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-gold text-sm tracking-[0.3em] uppercase mb-3 font-heading">
-            Our Properties
-          </p>
-          <h2 className="text-3xl md:text-4xl font-heading font-light mb-6 text-gray-900">
-            Featured <span className="font-semibold">Listings</span>
-          </h2>
-          <div className="w-16 h-[2px] bg-gold mx-auto mb-6" />
-          <p className="text-gray-500 leading-relaxed">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
+          <div>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-8 h-[1px] bg-gold" />
+              <p className="text-gold text-[12px] tracking-[0.4em] uppercase font-heading">
+                Our Properties
+              </p>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-heading font-extralight text-gray-900">
+              Featured <span className="font-semibold italic">Listings</span>
+            </h2>
+          </div>
+          <p className="text-gray-400 text-[15px] max-w-md mt-4 md:mt-0 leading-relaxed">
             Explore our curated selection of exceptional properties, each chosen
             for its unique character and investment potential.
           </p>
         </div>
 
         {/* Listings Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {visibleListings.map((listing) => (
             <div
               key={listing.address}
-              className="bg-white group cursor-pointer"
+              className="bg-white group cursor-pointer shadow-sm hover:shadow-xl transition-shadow duration-500"
             >
               <div className="relative overflow-hidden aspect-[4/3]">
                 <img
                   src={listing.image}
                   alt={listing.address}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4">
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
+                <div className="absolute top-5 left-5">
                   <span
-                    className={`text-xs tracking-wider uppercase px-3 py-1 font-heading ${
+                    className={`text-[11px] tracking-[0.15em] uppercase px-4 py-2 font-heading font-medium ${
                       listing.status === "Sold"
-                        ? "bg-gray-800 text-white"
+                        ? "bg-gray-900 text-white"
                         : listing.status === "Pending"
                           ? "bg-gold-dark text-white"
                           : "bg-gold text-white"
@@ -127,23 +132,28 @@ export default function Listings() {
                   </span>
                 </div>
               </div>
-              <div className="p-6">
-                <p className="text-2xl font-heading font-semibold text-gray-900 mb-2">
+              <div className="p-7">
+                <p className="text-gold text-[13px] tracking-wider font-heading font-medium mb-1">
+                  {listing.status === "Sold" ? "SOLD" : "LISTED AT"}
+                </p>
+                <p className="text-3xl font-heading font-semibold text-gray-900 mb-3">
                   {listing.price}
                 </p>
-                <p className="text-gray-900 font-medium">{listing.address}</p>
-                <p className="text-gray-500 text-sm mb-4">{listing.city}</p>
-                <div className="flex items-center gap-6 pt-4 border-t border-gray-200">
-                  <div className="flex items-center gap-1.5 text-gray-500 text-sm">
-                    <Bed className="w-4 h-4" />
+                <p className="text-gray-900 font-medium text-[15px]">
+                  {listing.address}
+                </p>
+                <p className="text-gray-400 text-sm mb-5">{listing.city}</p>
+                <div className="flex items-center gap-6 pt-5 border-t border-gray-100">
+                  <div className="flex items-center gap-2 text-gray-400 text-sm">
+                    <Bed className="w-4 h-4" strokeWidth={1.5} />
                     <span>{listing.beds} Beds</span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-gray-500 text-sm">
-                    <Bath className="w-4 h-4" />
+                  <div className="flex items-center gap-2 text-gray-400 text-sm">
+                    <Bath className="w-4 h-4" strokeWidth={1.5} />
                     <span>{listing.baths} Baths</span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-gray-500 text-sm">
-                    <Square className="w-4 h-4" />
+                  <div className="flex items-center gap-2 text-gray-400 text-sm">
+                    <Maximize className="w-4 h-4" strokeWidth={1.5} />
                     <span>{listing.sqft} sqft</span>
                   </div>
                 </div>
@@ -153,19 +163,19 @@ export default function Listings() {
         </div>
 
         {/* Pagination */}
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex items-center justify-center gap-3">
           <button
             onClick={() => setCurrentPage((p) => Math.max(0, p - 1))}
             disabled={currentPage === 0}
-            className="w-10 h-10 border border-gray-300 flex items-center justify-center hover:border-gold hover:text-gold transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="w-11 h-11 border border-gray-300 flex items-center justify-center hover:border-gold hover:text-gold transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4" />
           </button>
           {Array.from({ length: totalPages }).map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrentPage(i)}
-              className={`w-10 h-10 flex items-center justify-center text-sm transition-colors ${
+              className={`w-11 h-11 flex items-center justify-center text-sm font-heading transition-all duration-300 ${
                 i === currentPage
                   ? "bg-gold text-white"
                   : "border border-gray-300 hover:border-gold hover:text-gold"
@@ -179,9 +189,9 @@ export default function Listings() {
               setCurrentPage((p) => Math.min(totalPages - 1, p + 1))
             }
             disabled={currentPage === totalPages - 1}
-            className="w-10 h-10 border border-gray-300 flex items-center justify-center hover:border-gold hover:text-gold transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="w-11 h-11 border border-gray-300 flex items-center justify-center hover:border-gold hover:text-gold transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4" />
           </button>
         </div>
       </div>

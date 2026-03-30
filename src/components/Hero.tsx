@@ -2,53 +2,73 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center bg-black"
+      className="relative h-screen flex items-center justify-center bg-black overflow-hidden"
     >
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop')",
         }}
       >
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
+      </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-1/2 left-12 -translate-y-1/2 hidden xl:block">
+        <div className="w-[1px] h-32 bg-gold/30 mb-4" />
+        <p className="text-gold/50 text-[11px] tracking-[0.4em] uppercase [writing-mode:vertical-lr]">
+          Luxury Real Estate
+        </p>
+        <div className="w-[1px] h-32 bg-gold/30 mt-4" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <p className="text-gold text-sm md:text-base tracking-[0.3em] uppercase mb-4 font-heading">
-          Professional Real Estate Solutions
-        </p>
-        <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-heading font-light leading-tight mb-6">
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+        <div className="inline-flex items-center gap-4 mb-8">
+          <div className="w-12 h-[1px] bg-gold" />
+          <p className="text-gold text-[13px] tracking-[0.4em] uppercase font-heading font-light">
+            Professional Real Estate Solutions
+          </p>
+          <div className="w-12 h-[1px] bg-gold" />
+        </div>
+
+        <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-heading font-extralight leading-[1.1] mb-8 tracking-tight">
           Your Vision,
           <br />
-          <span className="font-semibold">Our Expertise</span>
+          <span className="font-semibold italic">Our Expertise</span>
         </h1>
-        <div className="w-20 h-[2px] bg-gold mx-auto mb-8" />
-        <p className="text-gray-300 text-lg md:text-xl font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+
+        <p className="text-white/60 text-lg md:text-xl font-light max-w-2xl mx-auto mb-14 leading-relaxed">
           Helping you find the perfect home with personalized service and deep
           market knowledge in every step of your real estate journey.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+        <div className="flex flex-col sm:flex-row gap-5 justify-center">
           <a
             href="#listings"
-            className="inline-block px-10 py-4 bg-gold text-white text-sm tracking-widest uppercase hover:bg-gold-light transition-colors duration-300"
+            className="group inline-flex items-center justify-center px-12 py-5 bg-gold text-white text-[13px] tracking-[0.25em] uppercase font-heading hover:bg-gold-light transition-all duration-500"
           >
             View Listings
           </a>
           <a
             href="#contact"
-            className="inline-block px-10 py-4 border border-white text-white text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-colors duration-300"
+            className="inline-flex items-center justify-center px-12 py-5 border border-white/30 text-white text-[13px] tracking-[0.25em] uppercase font-heading hover:border-gold hover:text-gold transition-all duration-500"
           >
             Contact Us
           </a>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-[1px] h-16 bg-gold/50" />
+      {/* Bottom Scroll */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+        <p className="text-white/40 text-[10px] tracking-[0.3em] uppercase">
+          Scroll
+        </p>
+        <div className="w-[1px] h-10 bg-white/20 relative overflow-hidden">
+          <div className="w-full h-1/2 bg-gold animate-bounce" />
+        </div>
       </div>
     </section>
   );

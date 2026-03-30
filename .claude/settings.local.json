@@ -6,7 +6,8 @@
       "Bash(npm install:*)",
       "Bash(npm run:*)",
       "Bash(node -e \"const l = require\\(''lucide-react''\\); console.log\\(Object.keys\\(l\\).filter\\(k => k.toLowerCase\\(\\).includes\\(''facebook''\\) || k.toLowerCase\\(\\).includes\\(''instagram''\\) || k.toLowerCase\\(\\).includes\\(''linkedin''\\) || k.toLowerCase\\(\\).includes\\(''youtube''\\)\\).join\\(''\\\\n''\\)\\)\")",
-      "Bash(node -e \"const l = require\\(''lucide-react''\\); const keys = Object.keys\\(l\\); console.log\\(keys.filter\\(k => /globe|link|share|external|mail|phone|user|message/i.test\\(k\\)\\).slice\\(0,30\\).join\\(''\\\\n''\\)\\)\")"
+      "Bash(node -e \"const l = require\\(''lucide-react''\\); const keys = Object.keys\\(l\\); console.log\\(keys.filter\\(k => /globe|link|share|external|mail|phone|user|message/i.test\\(k\\)\\).slice\\(0,30\\).join\\(''\\\\n''\\)\\)\")",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }

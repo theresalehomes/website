@@ -1,4 +1,11 @@
-import { Home, Building2, BarChart3, Key, Search, Briefcase } from "lucide-react";
+import {
+  Home,
+  Building2,
+  BarChart3,
+  Key,
+  Search,
+  Briefcase,
+} from "lucide-react";
 
 const services = [
   {
@@ -41,38 +48,40 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 md:py-28 bg-black text-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="services" className="py-24 md:py-32 bg-dark text-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-gold text-sm tracking-[0.3em] uppercase mb-3 font-heading">
-            What We Offer
-          </p>
-          <h2 className="text-3xl md:text-4xl font-heading font-light mb-6">
-            Our <span className="font-semibold">Services</span>
+        <div className="text-center max-w-2xl mx-auto mb-20">
+          <div className="inline-flex items-center gap-4 mb-4">
+            <div className="w-8 h-[1px] bg-gold" />
+            <p className="text-gold text-[12px] tracking-[0.4em] uppercase font-heading">
+              What We Offer
+            </p>
+            <div className="w-8 h-[1px] bg-gold" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-heading font-extralight mb-3">
+            Our Services
           </h2>
-          <div className="w-16 h-[2px] bg-gold mx-auto mb-6" />
-          <p className="text-gray-400 leading-relaxed">
-            We offer a full range of real estate services designed to meet your
-            needs, whether you&apos;re buying your first home or expanding your
+          <p className="text-gray-500 leading-relaxed text-[15px] mt-6">
+            A full range of real estate services designed to meet your needs,
+            whether you&apos;re buying your first home or expanding your
             investment portfolio.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-gray-800/50">
           {services.map((service) => (
             <div
               key={service.title}
-              className="group border border-gray-800 p-8 hover:border-gold transition-all duration-500"
+              className="group bg-dark p-10 lg:p-12 hover:bg-dark-card transition-all duration-500 relative"
             >
-              <div className="w-14 h-14 border border-gold flex items-center justify-center mb-6 group-hover:bg-gold transition-colors duration-500">
-                <service.icon className="w-6 h-6 text-gold group-hover:text-white transition-colors duration-500" />
-              </div>
-              <h3 className="text-lg font-heading font-semibold mb-4">
+              <div className="absolute top-0 left-0 w-0 h-[2px] bg-gold group-hover:w-full transition-all duration-700" />
+              <service.icon className="w-7 h-7 text-gold mb-8" strokeWidth={1.5} />
+              <h3 className="text-[17px] font-heading font-medium mb-4 tracking-wide">
                 {service.title}
               </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-gray-500 text-[14px] leading-[1.8]">
                 {service.description}
               </p>
             </div>

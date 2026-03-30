@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
 const testimonials = [
   {
@@ -41,64 +41,73 @@ export default function Testimonials() {
   const testimonial = testimonials[current];
 
   return (
-    <section
-      id="testimonials"
-      className="py-20 md:py-28 relative bg-cover bg-center bg-fixed"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop')",
-      }}
-    >
-      <div className="absolute inset-0 bg-black/80" />
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        <p className="text-gold text-sm tracking-[0.3em] uppercase mb-3 font-heading">
-          Testimonials
-        </p>
-        <h2 className="text-3xl md:text-4xl font-heading font-light text-white mb-16">
-          What Our <span className="font-semibold">Clients Say</span>
-        </h2>
+    <section id="testimonials" className="py-24 md:py-32 bg-white relative overflow-hidden">
+      {/* Background decorative quote */}
+      <div className="absolute top-12 left-1/2 -translate-x-1/2 text-[280px] font-heading text-gray-100 leading-none select-none pointer-events-none">
+        &ldquo;
+      </div>
 
-        <div className="relative">
-          <Quote className="w-12 h-12 text-gold/30 mx-auto mb-8" />
-          <p className="text-white text-lg md:text-xl leading-relaxed font-light mb-8 max-w-3xl mx-auto">
-            &ldquo;{testimonial.text}&rdquo;
-          </p>
-          <div className="flex justify-center gap-1 mb-4">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-12">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-4 mb-4">
+            <div className="w-8 h-[1px] bg-gold" />
+            <p className="text-gold text-[12px] tracking-[0.4em] uppercase font-heading">
+              Testimonials
+            </p>
+            <div className="w-8 h-[1px] bg-gold" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-heading font-extralight text-gray-900">
+            What Our Clients <span className="font-semibold italic">Say</span>
+          </h2>
+        </div>
+
+        {/* Testimonial Content */}
+        <div className="text-center">
+          <div className="flex justify-center gap-1.5 mb-10">
             {Array.from({ length: testimonial.rating }).map((_, i) => (
-              <Star
-                key={i}
-                className="w-4 h-4 text-gold fill-gold"
-              />
+              <Star key={i} className="w-5 h-5 text-gold fill-gold" />
             ))}
           </div>
-          <p className="text-gold font-heading font-semibold text-lg">
+
+          <p className="text-gray-700 text-xl md:text-2xl leading-relaxed font-light mb-12 max-w-3xl mx-auto italic">
+            &ldquo;{testimonial.text}&rdquo;
+          </p>
+
+          <div className="w-12 h-[1px] bg-gold mx-auto mb-6" />
+
+          <p className="font-heading font-semibold text-lg text-gray-900 tracking-wide">
             {testimonial.name}
           </p>
-          <p className="text-gray-400 text-sm">{testimonial.role}</p>
+          <p className="text-gold text-[13px] tracking-[0.2em] uppercase mt-1">
+            {testimonial.role}
+          </p>
         </div>
 
         {/* Navigation */}
-        <div className="flex items-center justify-center gap-6 mt-12">
+        <div className="flex items-center justify-center gap-8 mt-16">
           <button
             onClick={prev}
-            className="w-12 h-12 border border-gray-600 flex items-center justify-center text-white hover:border-gold hover:text-gold transition-colors"
+            className="w-12 h-12 border border-gray-200 flex items-center justify-center text-gray-400 hover:border-gold hover:text-gold transition-colors"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <div className="flex gap-2">
+          <div className="flex gap-2.5">
             {testimonials.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                  i === current ? "bg-gold" : "bg-gray-600"
+                className={`transition-all duration-300 ${
+                  i === current
+                    ? "w-8 h-2 bg-gold"
+                    : "w-2 h-2 bg-gray-300 hover:bg-gold/50"
                 }`}
               />
             ))}
           </div>
           <button
             onClick={next}
-            className="w-12 h-12 border border-gray-600 flex items-center justify-center text-white hover:border-gold hover:text-gold transition-colors"
+            className="w-12 h-12 border border-gray-200 flex items-center justify-center text-gray-400 hover:border-gold hover:text-gold transition-colors"
           >
             <ChevronRight className="w-5 h-5" />
           </button>

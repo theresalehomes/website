@@ -53,18 +53,19 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-3 gap-12">
+    <footer className="bg-black text-white">
+      {/* Main Footer */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
-          <div>
-            <h3 className="text-gold text-xl font-heading font-semibold mb-4">
-              Theresa Le Homes
+          <div className="lg:col-span-1">
+            <h3 className="font-heading text-xl font-light tracking-[0.15em] uppercase mb-6">
+              Theresa <span className="text-gold font-semibold">Le</span> Homes
             </h3>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Your trusted partner in real estate. We are dedicated to helping
-              you find the perfect property that matches your lifestyle and
-              investment goals.
+            <p className="text-gray-500 text-[14px] leading-[1.9] mb-8">
+              Your trusted partner in real estate. Dedicated to helping you find
+              the perfect property that matches your lifestyle and investment
+              goals.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
@@ -72,7 +73,7 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-10 h-10 border border-gray-700 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
+                  className="w-10 h-10 border border-gray-800 flex items-center justify-center text-gray-500 hover:border-gold hover:text-gold transition-all duration-300"
                 >
                   {social.svg}
                 </a>
@@ -82,15 +83,15 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm tracking-[0.2em] uppercase font-heading font-semibold mb-6">
+            <h4 className="text-[12px] tracking-[0.3em] uppercase font-heading mb-8 text-white">
               Quick Links
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 text-sm hover:text-gold transition-colors"
+                    className="text-gray-500 text-[14px] hover:text-gold transition-colors duration-300 hover:pl-2"
                   >
                     {link.label}
                   </Link>
@@ -101,10 +102,10 @@ export default function Footer() {
 
           {/* Office Info */}
           <div>
-            <h4 className="text-sm tracking-[0.2em] uppercase font-heading font-semibold mb-6">
+            <h4 className="text-[12px] tracking-[0.3em] uppercase font-heading mb-8 text-white">
               Office
             </h4>
-            <div className="space-y-4 text-gray-400 text-sm">
+            <div className="space-y-5 text-gray-500 text-[14px] leading-relaxed">
               <p>
                 123 Main Street, Suite 200
                 <br />
@@ -112,35 +113,49 @@ export default function Footer() {
               </p>
               <p>(408) 555-0123</p>
               <p>info@theresalehomes.com</p>
-              <p>
-                Mon – Fri: 9:00 AM – 6:00 PM
-                <br />
-                Sat: 10:00 AM – 4:00 PM
-                <br />
-                Sun: By Appointment
-              </p>
+            </div>
+          </div>
+
+          {/* Hours */}
+          <div>
+            <h4 className="text-[12px] tracking-[0.3em] uppercase font-heading mb-8 text-white">
+              Office Hours
+            </h4>
+            <div className="space-y-4 text-gray-500 text-[14px]">
+              <div className="flex justify-between">
+                <span>Mon – Fri</span>
+                <span className="text-gray-400">9:00 AM – 6:00 PM</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Saturday</span>
+                <span className="text-gray-400">10:00 AM – 4:00 PM</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Sunday</span>
+                <span className="text-gray-400">By Appointment</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-500 text-sm">
+      <div className="border-t border-gray-900">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-gray-600 text-[13px]">
             &copy; {new Date().getFullYear()} Theresa Le Homes. All rights
             reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex gap-8">
             <a
               href="#"
-              className="text-gray-500 text-sm hover:text-gold transition-colors"
+              className="text-gray-600 text-[13px] hover:text-gold transition-colors"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="text-gray-500 text-sm hover:text-gold transition-colors"
+              className="text-gray-600 text-[13px] hover:text-gold transition-colors"
             >
               Terms of Service
             </a>
