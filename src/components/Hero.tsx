@@ -1,75 +1,74 @@
-import Link from "next/link";
-
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="relative h-screen flex items-center justify-center bg-black overflow-hidden"
-    >
+    <section className="relative h-screen flex items-end bg-black overflow-hidden">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop')",
+            "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-1/2 left-12 -translate-y-1/2 hidden xl:block">
-        <div className="w-[1px] h-32 bg-gold/30 mb-4" />
-        <p className="text-gold/50 text-[11px] tracking-[0.4em] uppercase [writing-mode:vertical-lr]">
-          Luxury Real Estate
-        </p>
-        <div className="w-[1px] h-32 bg-gold/30 mt-4" />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-        <div className="inline-flex items-center gap-4 mb-8">
-          <div className="w-12 h-[1px] bg-gold" />
-          <p className="text-gold text-[13px] tracking-[0.4em] uppercase font-heading font-light">
-            Professional Real Estate Solutions
-          </p>
-          <div className="w-12 h-[1px] bg-gold" />
+      {/* Large Typography */}
+      <div className="relative z-10 w-full pb-0">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <h1 className="text-white/20 text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-heading font-bold leading-[0.85] tracking-tight uppercase select-none">
+            Finding Homes
+          </h1>
+        </div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <h1 className="text-white/10 text-7xl sm:text-9xl md:text-[10rem] lg:text-[13rem] xl:text-[16rem] font-heading font-bold leading-[0.85] tracking-tight uppercase select-none">
+            Today
+          </h1>
         </div>
 
-        <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-heading font-extralight leading-[1.1] mb-8 tracking-tight">
-          Your Vision,
-          <br />
-          <span className="font-semibold italic">Our Expertise</span>
-        </h1>
-
-        <p className="text-white/60 text-lg md:text-xl font-light max-w-2xl mx-auto mb-14 leading-relaxed">
-          Helping you find the perfect home with personalized service and deep
-          market knowledge in every step of your real estate journey.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-5 justify-center">
-          <Link
-            href="/listings"
-            className="group inline-flex items-center justify-center px-12 py-5 bg-gold text-white text-[13px] tracking-[0.25em] uppercase font-heading hover:bg-gold-light transition-all duration-500"
+        {/* Values Grid overlapping bottom */}
+        <div className="relative mt-8">
+          <div
+            className="bg-cover bg-center"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')",
+            }}
           >
-            View Listings
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center px-12 py-5 border border-white/30 text-white text-[13px] tracking-[0.25em] uppercase font-heading hover:border-gold hover:text-gold transition-all duration-500"
-          >
-            Contact Us
-          </Link>
-        </div>
-      </div>
-
-      {/* Bottom Scroll */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-        <p className="text-white/40 text-[10px] tracking-[0.3em] uppercase">
-          Scroll
-        </p>
-        <div className="w-[1px] h-10 bg-white/20 relative overflow-hidden">
-          <div className="w-full h-1/2 bg-gold animate-bounce" />
+            <div className="bg-black/80">
+              <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4">
+                {[
+                  {
+                    title: "Excellence",
+                    text: "We are committed to delivering the highest quality in every transaction, exceeding expectations and setting new standards.",
+                  },
+                  {
+                    title: "Innovation",
+                    text: "We embrace creativity and advanced technologies to stay ahead of market trends, seeking new solutions for our clients.",
+                  },
+                  {
+                    title: "Integrity",
+                    text: "We uphold transparency and ethical practices in all business operations, building trust with clients and communities.",
+                  },
+                  {
+                    title: "Sustainability",
+                    text: "We ensure our recommendations contribute positively to the community, creating lasting value for generations to come.",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    className="px-8 py-10 lg:py-14 border-l border-white/5 first:border-l-0"
+                  >
+                    <h3 className="text-white text-xl font-heading font-semibold italic mb-4">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

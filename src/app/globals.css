@@ -17,10 +17,12 @@
   --color-gray-700: #404040;
   --color-gray-800: #262626;
   --color-gray-900: #171717;
-  --color-dark: #0A0A0A;
-  --color-dark-card: #141414;
-  --font-heading: "Montserrat", sans-serif;
-  --font-body: "Lato", sans-serif;
+  --color-dark: #1a1a1a;
+  --color-dark-card: #222222;
+  --color-dark-deep: #111111;
+  --color-dark-surface: #2a2a2a;
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", sans-serif;
 }
 
 * {
@@ -35,8 +37,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  color: var(--color-gray-900);
-  background: var(--color-white);
+  color: var(--color-gray-400);
+  background: var(--color-dark-deep);
   overflow-x: hidden;
 }
 
@@ -47,4 +49,58 @@ h1, h2, h3, h4, h5, h6 {
 ::selection {
   background: var(--color-gold);
   color: white;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.5s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+  opacity: 0;
 }

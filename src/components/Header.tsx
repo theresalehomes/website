@@ -10,7 +10,6 @@ const navLinks = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Listings", href: "/listings" },
-  { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
@@ -33,16 +32,17 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-black/95 backdrop-blur-md py-3 shadow-lg"
+          ? "bg-dark-deep/95 backdrop-blur-md py-4 shadow-2xl"
           : "bg-transparent py-6"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
-        <Link
-          href="/"
-          className="font-heading text-white text-2xl font-light tracking-[0.15em] uppercase"
-        >
-          Theresa <span className="text-gold font-semibold">Le</span> Homes
+        <Link href="/" className="block">
+          <img
+            src="/images/logo.webp"
+            alt="Theresa Le Homes"
+            className="h-12 w-auto mix-blend-lighten"
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -51,15 +51,21 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-[13px] tracking-[0.2em] uppercase transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:bg-gold after:transition-all after:duration-300 ${
+              className={`text-[13px] tracking-[0.15em] uppercase font-body font-light transition-colors duration-300 ${
                 isActive(link.href)
-                  ? "text-gold after:w-full"
-                  : "text-white/80 after:w-0 hover:text-gold hover:after:w-full"
+                  ? "text-gold"
+                  : "text-white/70 hover:text-white"
               }`}
             >
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/contact"
+            className="ml-4 px-7 py-2.5 bg-white text-dark text-[12px] tracking-[0.15em] uppercase font-body font-medium hover:bg-gold hover:text-white transition-all duration-300"
+          >
+            Enquire Now
+          </Link>
         </nav>
 
         {/* Mobile Toggle */}
@@ -74,7 +80,7 @@ export default function Header() {
 
       {/* Mobile Nav */}
       <div
-        className={`lg:hidden fixed inset-0 bg-black/98 z-40 transition-all duration-500 flex flex-col items-center justify-center ${
+        className={`lg:hidden fixed inset-0 bg-dark-deep/98 z-40 transition-all duration-500 flex flex-col items-center justify-center ${
           mobileOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
@@ -89,7 +95,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-lg tracking-[0.3em] uppercase transition-colors ${
+              className={`text-lg tracking-[0.2em] uppercase font-heading transition-colors ${
                 isActive(link.href) ? "text-gold" : "text-white hover:text-gold"
               }`}
               onClick={() => setMobileOpen(false)}
@@ -97,6 +103,13 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/contact"
+            className="mt-4 px-10 py-3 bg-white text-dark text-[13px] tracking-[0.15em] uppercase font-body hover:bg-gold hover:text-white transition-all duration-300"
+            onClick={() => setMobileOpen(false)}
+          >
+            Enquire Now
+          </Link>
         </nav>
       </div>
     </header>
