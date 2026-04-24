@@ -47,7 +47,7 @@ export default function Testimonials() {
         &ldquo;
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-12">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
         {/* Header */}
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-4 mb-4">

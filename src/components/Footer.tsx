@@ -44,7 +44,7 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer className="bg-dark-deep text-white border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-20">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
@@ -145,7 +145,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-700 text-xs">
             &copy; {new Date().getFullYear()} Theresa Le Homes. All rights
             reserved.

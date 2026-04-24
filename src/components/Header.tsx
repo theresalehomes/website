@@ -36,7 +36,7 @@ export default function Header() {
           : "bg-transparent py-6"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 flex items-center justify-between">
         <Link href="/" className="block">
           <img
             src="/images/logo.webp"

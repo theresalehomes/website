@@ -3,7 +3,16 @@
 import { useState, FormEvent } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+
+// ─────────────────────────────────────────────────────────────
+// 1. Go to https://formspree.io → sign up (free)
+// 2. Create a new form → set email to: theresalehomes@gmail.com
+// 3. Copy your Form ID and paste it below (replace YOUR_FORM_ID)
+// ─────────────────────────────────────────────────────────────
+const FORMSPREE_ID = "YOUR_FORM_ID";
+
+type Status = "idle" | "loading" | "success" | "error";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -13,12 +22,38 @@ export default function ContactPage() {
     interest: "Buy",
     message: "",
   });
+  const [status, setStatus] = useState<Status>("idle");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    alert("Thank you for your message! We will get back to you soon.");
-    setFormData({ name: "", email: "", phone: "", interest: "Buy", message: "" });
+    setStatus("loading");
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          interest: formData.interest,
+          message: formData.message,
+          _subject: `New enquiry from ${formData.name} — Theresa Le Homes`,
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", phone: "", interest: "Buy", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
+
+  const isLoading = status === "loading";
 
   return (
     <>
@@ -34,7 +69,7 @@ export default function ContactPage() {
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-dark-deep/80 to-dark-deep" />
-          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 text-center">
             <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-6">
               Get In Touch
             </p>
@@ -46,10 +81,11 @@ export default function ContactPage() {
 
         {/* Contact Form & Info */}
         <section className="py-28 md:py-36 bg-dark text-white">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <div className="grid lg:grid-cols-5 gap-16 xl:gap-24">
-              {/* Left side - Info */}
-              <div className="lg:col-span-2">
+
+              {/* Left — Info */}
+              <div className="lg:col-span-2 text-center lg:text-left">
                 <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-6">
                   Contact Info
                 </p>
@@ -61,157 +97,168 @@ export default function ContactPage() {
                   start your real estate journey together.
                 </p>
 
-                <div className="space-y-8 mb-14">
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 border border-white/10 flex items-center justify-center shrink-0">
-                      <Phone className="w-4 h-4 text-gold" strokeWidth={1.5} />
+                <div className="space-y-8">
+                  {[
+                    { Icon: Phone, label: "Phone", value: "(408) 555-0123" },
+                    { Icon: Mail, label: "Email", value: "theresalehomes@gmail.com" },
+                    {
+                      Icon: MapPin,
+                      label: "Office",
+                      value: "123 Main Street, Suite 200\nSan Jose, CA 95113",
+                    },
+                    {
+                      Icon: Clock,
+                      label: "Office Hours",
+                      value: "Mon – Fri: 9:00 AM – 6:00 PM\nSat: 10:00 AM – 4:00 PM\nSun: By Appointment",
+                    },
+                  ].map(({ Icon, label, value }) => (
+                    <div key={label} className="flex items-start gap-5 justify-center lg:justify-start">
+                      <div className="w-12 h-12 border border-white/10 flex items-center justify-center shrink-0">
+                        <Icon className="w-4 h-4 text-gold" strokeWidth={1.5} />
+                      </div>
+                      <div className="text-left">
+                        <p className="text-xs text-gray-600 tracking-[0.15em] uppercase mb-1 font-body">
+                          {label}
+                        </p>
+                        <p className="text-white text-[15px] whitespace-pre-line">{value}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-xs text-gray-600 tracking-[0.15em] uppercase mb-1 font-body">
-                        Phone
-                      </p>
-                      <p className="text-white text-[15px]">(408) 555-0123</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 border border-white/10 flex items-center justify-center shrink-0">
-                      <Mail className="w-4 h-4 text-gold" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-600 tracking-[0.15em] uppercase mb-1 font-body">
-                        Email
-                      </p>
-                      <p className="text-white text-[15px]">
-                        info@theresalehomes.com
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 border border-white/10 flex items-center justify-center shrink-0">
-                      <MapPin className="w-4 h-4 text-gold" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-600 tracking-[0.15em] uppercase mb-1 font-body">
-                        Office
-                      </p>
-                      <p className="text-white text-[15px]">
-                        123 Main Street, Suite 200
-                        <br />
-                        San Jose, CA 95113
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 border border-white/10 flex items-center justify-center shrink-0">
-                      <Clock className="w-4 h-4 text-gold" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-600 tracking-[0.15em] uppercase mb-1 font-body">
-                        Office Hours
-                      </p>
-                      <p className="text-white text-[15px]">
-                        Mon - Fri: 9:00 AM - 6:00 PM
-                        <br />
-                        Sat: 10:00 AM - 4:00 PM
-                        <br />
-                        Sun: By Appointment
-                      </p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Right side - Form */}
+              {/* Right — Form */}
               <div className="lg:col-span-3">
-                <form onSubmit={handleSubmit} className="space-y-0">
-                  <div className="grid md:grid-cols-2 gap-x-8">
-                    <div className="py-4 border-b border-white/10">
-                      <label className="text-xs text-gray-600 tracking-[0.15em] uppercase block mb-2 font-body">
-                        Your Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
-                        className="w-full bg-transparent text-white text-[15px] focus:outline-none placeholder:text-gray-700"
-                        placeholder="John Doe"
-                      />
-                    </div>
-                    <div className="py-4 border-b border-white/10">
-                      <label className="text-xs text-gray-600 tracking-[0.15em] uppercase block mb-2 font-body">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        className="w-full bg-transparent text-white text-[15px] focus:outline-none placeholder:text-gray-700"
-                        placeholder="john@example.com"
-                      />
-                    </div>
-                    <div className="py-4 border-b border-white/10">
-                      <label className="text-xs text-gray-600 tracking-[0.15em] uppercase block mb-2 font-body">
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
-                        className="w-full bg-transparent text-white text-[15px] focus:outline-none placeholder:text-gray-700"
-                        placeholder="(408) 555-0123"
-                      />
-                    </div>
-                    <div className="py-4 border-b border-white/10">
-                      <label className="text-xs text-gray-600 tracking-[0.15em] uppercase block mb-2 font-body">
-                        Interested In
-                      </label>
-                      <select
-                        value={formData.interest}
-                        onChange={(e) =>
-                          setFormData({ ...formData, interest: e.target.value })
-                        }
-                        className="w-full bg-transparent text-white text-[15px] focus:outline-none appearance-none cursor-pointer"
-                      >
-                        <option value="Buy" className="bg-dark">Buy</option>
-                        <option value="Sell" className="bg-dark">Sell</option>
-                        <option value="Rent" className="bg-dark">Rent</option>
-                        <option value="Invest" className="bg-dark">Invest</option>
-                        <option value="Other" className="bg-dark">Other</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="py-4 border-b border-white/10">
-                    <label className="text-xs text-gray-600 tracking-[0.15em] uppercase block mb-2 font-body">
-                      Your Message *
-                    </label>
-                    <textarea
-                      required
-                      rows={4}
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      className="w-full bg-transparent text-white text-[15px] focus:outline-none resize-none placeholder:text-gray-700"
-                      placeholder="Tell us about your real estate needs..."
-                    />
-                  </div>
-                  <div className="pt-10">
+
+                {/* Success state */}
+                {status === "success" ? (
+                  <div className="flex flex-col items-center justify-center text-center py-20 gap-6">
+                    <CheckCircle className="w-16 h-16 text-gold" strokeWidth={1} />
+                    <h3 className="text-3xl font-heading text-white">Message Sent!</h3>
+                    <p className="text-gray-500 max-w-sm leading-relaxed">
+                      Thank you for reaching out. Theresa will get back to you
+                      within 1 business day.
+                    </p>
                     <button
-                      type="submit"
-                      className="px-10 py-4 bg-white text-dark text-[12px] tracking-[0.15em] uppercase font-body font-medium hover:bg-gold hover:text-white transition-all duration-300"
+                      onClick={() => setStatus("idle")}
+                      className="mt-4 px-10 py-4 bg-white text-dark text-[12px] tracking-[0.15em] uppercase font-body font-medium hover:bg-gold hover:text-white transition-all duration-300"
                     >
-                      Submit
+                      Send Another Message
                     </button>
                   </div>
-                </form>
+                ) : (
+                  <form onSubmit={handleSubmit}>
+                    <div className="grid md:grid-cols-2 gap-x-8">
+                      {/* Name */}
+                      <div className="py-4 border-b border-white/10">
+                        <label className="text-xs text-gray-600 tracking-[0.15em] uppercase block mb-2 font-body">
+                          Your Name *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          disabled={isLoading}
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className="w-full bg-transparent text-white text-[15px] focus:outline-none placeholder:text-gray-700 disabled:opacity-50"
+                          placeholder="John Doe"
+                        />
+                      </div>
+
+                      {/* Email */}
+                      <div className="py-4 border-b border-white/10">
+                        <label className="text-xs text-gray-600 tracking-[0.15em] uppercase block mb-2 font-body">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          disabled={isLoading}
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="w-full bg-transparent text-white text-[15px] focus:outline-none placeholder:text-gray-700 disabled:opacity-50"
+                          placeholder="john@example.com"
+                        />
+                      </div>
+
+                      {/* Phone */}
+                      <div className="py-4 border-b border-white/10">
+                        <label className="text-xs text-gray-600 tracking-[0.15em] uppercase block mb-2 font-body">
+                          Phone Number
+                        </label>
+                        <input
+                          type="tel"
+                          disabled={isLoading}
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          className="w-full bg-transparent text-white text-[15px] focus:outline-none placeholder:text-gray-700 disabled:opacity-50"
+                          placeholder="(408) 555-0123"
+                        />
+                      </div>
+
+                      {/* Interest */}
+                      <div className="py-4 border-b border-white/10">
+                        <label className="text-xs text-gray-600 tracking-[0.15em] uppercase block mb-2 font-body">
+                          Interested In
+                        </label>
+                        <select
+                          disabled={isLoading}
+                          value={formData.interest}
+                          onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
+                          className="w-full bg-transparent text-white text-[15px] focus:outline-none appearance-none cursor-pointer disabled:opacity-50"
+                        >
+                          <option value="Buy" className="bg-dark">Buy</option>
+                          <option value="Sell" className="bg-dark">Sell</option>
+                          <option value="Rent" className="bg-dark">Rent</option>
+                          <option value="Invest" className="bg-dark">Invest</option>
+                          <option value="Other" className="bg-dark">Other</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Message */}
+                    <div className="py-4 border-b border-white/10">
+                      <label className="text-xs text-gray-600 tracking-[0.15em] uppercase block mb-2 font-body">
+                        Your Message *
+                      </label>
+                      <textarea
+                        required
+                        rows={5}
+                        disabled={isLoading}
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className="w-full bg-transparent text-white text-[15px] focus:outline-none resize-none placeholder:text-gray-700 disabled:opacity-50"
+                        placeholder="Tell us about your real estate needs..."
+                      />
+                    </div>
+
+                    {/* Error banner */}
+                    {status === "error" && (
+                      <div className="flex items-center gap-3 mt-6 text-red-400">
+                        <AlertCircle className="w-4 h-4 shrink-0" />
+                        <p className="text-sm">
+                          Something went wrong. Please try again or email us directly at{" "}
+                          <a href="mailto:theresalehomes@gmail.com" className="underline">
+                            theresalehomes@gmail.com
+                          </a>
+                          .
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Submit */}
+                    <div className="pt-10">
+                      <button
+                        type="submit"
+                        disabled={isLoading}
+                        className="inline-flex items-center gap-3 px-10 py-4 bg-white text-dark text-[12px] tracking-[0.15em] uppercase font-body font-medium hover:bg-gold hover:text-white transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                      >
+                        {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+                        {isLoading ? "Sending…" : "Submit"}
+                      </button>
+                    </div>
+                  </form>
+                )}
               </div>
             </div>
           </div>
@@ -219,8 +266,8 @@ export default function ContactPage() {
 
         {/* Map Placeholder */}
         <section className="bg-dark-deep">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24">
-            <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-24">
+            <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-8 text-center">
               Our Location
             </p>
             <div className="aspect-[16/9] md:aspect-[21/9] bg-dark-card border border-white/5 flex items-center justify-center">

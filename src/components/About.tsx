@@ -10,7 +10,7 @@ const stats = [
 export default function About() {
   return (
     <section id="about" className="py-24 md:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
         {/* Section Label */}
         <div className="flex items-center gap-4 mb-4">
           <div className="w-8 h-[1px] bg-gold" />

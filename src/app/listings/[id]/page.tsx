@@ -60,7 +60,7 @@ export default function ListingDetailPage({
       <main>
         {/* Back Link */}
         <section className="pt-28 pb-4 bg-dark-deep">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <Link
               href="/listings"
               className="inline-flex items-center gap-2 text-gray-500 text-xs tracking-[0.15em] uppercase font-body hover:text-gold transition-colors"
@@ -73,7 +73,7 @@ export default function ListingDetailPage({
 
         {/* Image Gallery */}
         <section className="bg-dark-deep pb-8">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-black">
               <img
                 src={listing.images[currentImage]}
@@ -138,7 +138,7 @@ export default function ListingDetailPage({
 
         {/* Property Details */}
         <section className="py-16 md:py-24 bg-dark">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <div className="grid lg:grid-cols-3 gap-12 xl:gap-16">
               {/* Main Content */}
               <div className="lg:col-span-2">

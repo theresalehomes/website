@@ -74,7 +74,7 @@ export default function AboutPage() {
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-dark-deep/80 to-dark-deep" />
-          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 text-center">
             <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-6">
               About Us
             </p>
@@ -86,7 +86,7 @@ export default function AboutPage() {
 
         {/* Main About */}
         <section className="py-28 md:py-36 bg-dark">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
               <div className="relative">
                 <div className="aspect-[3/4] overflow-hidden">
@@ -107,7 +107,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div>
+              <div className="text-center lg:text-left">
                 <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-6">
                   Who We Are
                 </p>
@@ -116,7 +116,7 @@ export default function AboutPage() {
                   <br />
                   <span className="italic">Your Perfect Home</span>
                 </h2>
-                <div className="w-12 h-[1px] bg-gold mb-8" />
+                <div className="w-12 h-[1px] bg-gold mb-8 mx-auto lg:mx-0" />
                 <p className="text-gray-500 leading-[1.9] mb-6 text-[15px]">
                   With over 15 years of experience in the real estate market,
                   Theresa Le Homes is committed to providing exceptional service and
@@ -159,7 +159,7 @@ export default function AboutPage() {
 
         {/* Our Values */}
         <section className="py-28 md:py-36 bg-dark-deep">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <div className="text-center mb-20">
               <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-4">
                 Our Values
@@ -190,7 +190,7 @@ export default function AboutPage() {
 
         {/* Our Team */}
         <section className="py-28 md:py-36 bg-dark">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <div className="text-center mb-20">
               <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-4">
                 Our Team

@@ -42,7 +42,7 @@ export default function ServicesPage() {
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-dark-deep/80 to-dark-deep" />
-          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 text-center">
             <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-6">
               What We Offer
             </p>
@@ -54,7 +54,7 @@ export default function ServicesPage() {
 
         {/* Services Grid */}
         <section className="py-28 md:py-36 bg-dark text-white">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <div className="text-center max-w-2xl mx-auto mb-20">
               <h2 className="text-4xl md:text-5xl font-heading text-white mb-4">
                 Comprehensive Real Estate
@@ -96,9 +96,9 @@ export default function ServicesPage() {
 
         {/* Why Choose Us */}
         <section className="py-28 md:py-36 bg-dark-deep">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
-              <div>
+              <div className="text-center lg:text-left">
                 <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-6">
                   Why Choose Us
                 </p>
@@ -107,7 +107,7 @@ export default function ServicesPage() {
                   <br />
                   <span className="italic">Difference</span>
                 </h2>
-                <div className="w-12 h-[1px] bg-gold mb-8" />
+                <div className="w-12 h-[1px] bg-gold mb-8 mx-auto lg:mx-0" />
                 <p className="text-gray-500 leading-[1.9] mb-10 text-[15px]">
                   What sets us apart is our unwavering commitment to your success. We
                   don&apos;t just complete transactions — we build relationships and

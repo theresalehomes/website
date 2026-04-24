@@ -84,7 +84,7 @@ export default function Listings() {
 
   return (
     <section id="listings" className="py-24 md:py-32 bg-cream">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
           <div>

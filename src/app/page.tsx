@@ -4,10 +4,83 @@ import Hero from "@/components/Hero";
 import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
 import { listings, testimonials } from "@/data/listings";
-import { Bed, Bath, Maximize, Star } from "lucide-react";
+import {
+  ArrowRight,
+  Bath,
+  Bed,
+  CalendarDays,
+  Compass,
+  House,
+  Key,
+  MapPin,
+  Maximize,
+  Sparkles,
+  Star,
+} from "lucide-react";
 
 const featuredListings = listings.filter((l) => l.status === "For Sale").slice(0, 3);
 const featuredTestimonial = testimonials[0];
+
+const servicePillars = [
+  {
+    num: "01",
+    title: "Buying a Home",
+    description:
+      "Buying a home is like unlocking a new chapter — finding your cozy corner, choosing the neighbourhood, picking colours that reflect your style.",
+  },
+  {
+    num: "02",
+    title: "Selling Your Home",
+    description:
+      "Selling is passing on a cherished story. From staging each room to highlighting its best features, it's a journey of letting go with pride.",
+  },
+  {
+    num: "03",
+    title: "Leasing a Space",
+    description:
+      "Leasing is a canvas for your dreams — a place where ideas flourish, ambitions thrive, and your business has room to blossom.",
+  },
+];
+
+const marketPoints = [
+  {
+    icon: House,
+    label: "Find Your Dream Home",
+    value: "Curated property searches across Toronto's most characterful neighbourhoods, matched to lifestyle and long-term fit.",
+  },
+  {
+    icon: Key,
+    label: "Sell Your Properties",
+    value: "Thoughtful staging, design-led marketing, and pricing built around the story your home actually tells.",
+  },
+  {
+    icon: Sparkles,
+    label: "Real Estate Consultation",
+    value: "Clear, honest answers for whatever real estate question is on your mind — buying, selling, leasing, or simply exploring.",
+  },
+];
+
+const neighbourhoods = [
+  "Baby Point",
+  "Bloor West Village",
+  "Cabbagetown",
+  "Distillery District",
+  "Dundas West",
+  "High Park North",
+  "Junction Area",
+  "Roncesvalles",
+  "Runnymede",
+  "Swansea",
+  "Warren Park",
+  "West Bend",
+];
+
+const developerPartners = [
+  "Urban Corp",
+  "Cresford",
+  "Empire Communities",
+  "Minto",
+];
 
 export default function Home() {
   return (
@@ -16,188 +89,222 @@ export default function Home() {
       <main>
         <Hero />
 
-        {/* Corporate Structure / Services Overview */}
-        <section className="py-28 md:py-36 bg-dark-deep">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
-            <div className="text-center mb-20">
-              <h2 className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-6">
-                Corporate Structure
+        {/* ── Service Pillars ─────────────────────────────────────────── */}
+        <section className="relative overflow-hidden bg-[#f6f0e7] py-24 text-dark md:py-28">
+          <div className="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(ellipse_at_top,rgba(198,169,98,0.18),transparent_65%)]" />
+          {/* Decorative gold orb */}
+          <div className="absolute right-0 top-1/2 h-80 w-80 -translate-y-1/2 translate-x-1/2 rounded-full bg-gold/[0.07] blur-[80px]" />
+
+          <div className="relative mx-auto max-w-6xl px-6 sm:px-10 lg:px-16 xl:px-24">
+            <div className="text-center">
+              <div className="inline-flex items-center gap-3">
+                <span className="h-px w-10 bg-gold-dark/60" />
+                <p className="text-xs uppercase tracking-[0.38em] text-gold-dark">
+                  Buying · Selling · Leasing
+                </p>
+                <span className="h-px w-10 bg-gold-dark/60" />
+              </div>
+              <h2 className="mx-auto mt-5 max-w-2xl text-4xl leading-tight font-heading md:text-5xl">
+                Toronto real estate experiences, meticulously curated.
               </h2>
-              <p className="text-gray-500 max-w-2xl mx-auto leading-relaxed">
-                Theresa Le Homes operates as a full-service real estate consultancy,
-                offering comprehensive solutions across multiple sectors of the property market.
-              </p>
+              <div className="mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-gold-dark to-transparent" />
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-white/5">
-              {[
-                {
-                  title: "Residential Sales",
-                  desc: "Expert guidance through every step of buying or selling your home, ensuring the best possible outcome.",
-                },
-                {
-                  title: "Commercial Real Estate",
-                  desc: "Strategic commercial property solutions for investors and business owners looking to grow their portfolio.",
-                },
-                {
-                  title: "Property Management",
-                  desc: "Comprehensive property management services to protect your investment and maximize rental income.",
-                },
-                {
-                  title: "Market Analysis",
-                  desc: "In-depth market research and analysis to help you make informed decisions in today's competitive market.",
-                },
-                {
-                  title: "Home Search",
-                  desc: "Personalized home search tailored to your unique needs, preferences, and budget requirements.",
-                },
-                {
-                  title: "Investment Consulting",
-                  desc: "Expert investment advice and strategies to help you build wealth through smart real estate investments.",
-                },
-              ].map((item) => (
+            <div className="mt-14 grid gap-4 md:grid-cols-3">
+              {servicePillars.map((pillar) => (
                 <div
-                  key={item.title}
-                  className="bg-dark-deep p-10 lg:p-12 hover:bg-dark-card transition-all duration-500 group"
+                  key={pillar.title}
+                  className="group relative overflow-hidden border border-black/8 bg-white p-6 text-center shadow-[0_20px_45px_rgba(28,22,18,0.06)] transition-shadow duration-300 hover:shadow-[0_24px_55px_rgba(28,22,18,0.12)]"
                 >
-                  <h3 className="text-white text-lg font-heading font-semibold mb-4">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-[1.8]">
-                    {item.desc}
+                  <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-gold to-gold-light opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <p className="text-3xl font-heading text-gold/30">{pillar.num}</p>
+                  <p className="mt-3 text-sm font-semibold uppercase tracking-[0.16em] text-dark">
+                    {pillar.title}
                   </p>
-                  <div className="w-0 h-[1px] bg-gold group-hover:w-12 transition-all duration-500 mt-6" />
+                  <p className="mt-3 text-sm leading-7 text-gray-700">
+                    {pillar.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-14 grid gap-8 lg:grid-cols-3">
+              {marketPoints.map((point) => (
+                <div
+                  key={point.label}
+                  className="group flex flex-col items-center gap-4 px-4 py-6 text-center transition-colors duration-300"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center border border-gold-dark/25 bg-gold/[0.06] transition-colors duration-300 group-hover:bg-gold/[0.12]">
+                    <point.icon className="h-4 w-4 text-gold-dark" strokeWidth={1.8} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-dark">
+                      {point.label}
+                    </p>
+                    <p className="mx-auto mt-2 max-w-xs text-sm leading-7 text-gray-700">
+                      {point.value}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* About Preview with Stats */}
-        <section className="py-28 md:py-36 bg-dark relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
-            <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
-              <div className="relative">
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img
-                    src="/images/theresa.webp"
-                    alt="Theresa Le - Real Estate Professional"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute -bottom-4 -right-4 w-full h-full border border-white/5 -z-10" />
-              </div>
+        {/* ── About / Agent Intro ──────────────────────────────────────── */}
+        <section className="relative overflow-hidden bg-dark py-24 md:py-28">
+          <div className="absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_15%_20%,rgba(198,169,98,0.14),transparent_28%)]" />
+          <div className="absolute right-0 bottom-0 h-full w-full bg-[radial-gradient(circle_at_85%_80%,rgba(198,169,98,0.06),transparent_28%)]" />
 
-              <div>
-                <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-6">
-                  About Us
-                </p>
-                <h2 className="text-4xl md:text-5xl font-heading text-white mb-8 leading-tight">
-                  Dedicated to Finding
-                  <br />
-                  <span className="italic">Your Perfect Home</span>
-                </h2>
-                <div className="w-12 h-[1px] bg-gold mb-8" />
-                <p className="text-gray-500 leading-[1.9] mb-6 text-[15px]">
-                  With over 15 years of experience in the real estate market,
-                  Theresa Le Homes is committed to providing exceptional service and
-                  expert guidance for all your real estate needs.
-                </p>
-                <p className="text-gray-500 leading-[1.9] mb-12 text-[15px]">
-                  Our team combines deep market knowledge, innovative marketing
-                  strategies, and a genuine passion for helping families find their
-                  dream homes.
-                </p>
+          <div className="relative mx-auto max-w-5xl px-6 text-center lg:px-12">
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-3">
+              <span className="h-px w-10 bg-gold/60" />
+              <p className="text-xs uppercase tracking-[0.38em] text-gold">
+                Meet Theresa
+              </p>
+              <span className="h-px w-10 bg-gold/60" />
+            </div>
 
-                <div className="grid grid-cols-2 gap-8 mb-10">
-                  {[
-                    { value: "500+", label: "Properties Sold" },
-                    { value: "1000+", label: "Happy Clients" },
-                    { value: "15+", label: "Years Experience" },
-                    { value: "99%", label: "Client Satisfaction" },
-                  ].map((stat) => (
-                    <div key={stat.label}>
-                      <p className="text-3xl md:text-4xl font-heading font-bold text-white mb-1">
-                        {stat.value}
-                      </p>
-                      <p className="text-gray-600 text-xs tracking-[0.15em] uppercase">
-                        {stat.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <Link
-                  href="/about"
-                  className="inline-block px-10 py-4 bg-white text-dark text-[12px] tracking-[0.15em] uppercase font-body font-medium hover:bg-gold hover:text-white transition-all duration-300"
-                >
-                  Learn More
-                </Link>
+            {/* Photo */}
+            <div className="relative mx-auto mt-10 w-full max-w-sm">
+              <div className="absolute -inset-4 hidden rounded-[2.5rem] border border-white/8 sm:block" />
+              <div className="absolute -right-6 -bottom-6 hidden h-40 w-40 rounded-full bg-gold/[0.08] blur-[50px] sm:block" />
+              <div className="relative overflow-hidden rounded-[2rem] shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
+                <img
+                  src="/images/theresa.webp"
+                  alt="Theresa Le - Real Estate Professional"
+                  className="aspect-[4/5] w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent" />
               </div>
             </div>
+
+            {/* Heading */}
+            <h2 className="mx-auto mt-10 max-w-3xl text-4xl leading-tight font-heading text-white md:text-5xl">
+              Seven years of Toronto real estate,
+              <span className="block italic text-gold-light">and still just getting started.</span>
+            </h2>
+            <div className="mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-gold to-transparent" />
+
+            {/* Description */}
+            <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-8 text-white/65">
+              From helping clients find their dream homes to representing top
+              developers like Urban Corp, Cresford, Empire Communities, and
+              Minto, Theresa&apos;s seven-year journey has been a whirlwind of
+              excitement and learning — each home, each launch, each client a
+              new chapter in the story.
+            </p>
+
+            {/* Stats */}
+            <div className="mx-auto mt-10 grid max-w-3xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { value: "7+", label: "Years In Real Estate" },
+                { value: "4", label: "Top Developer Partners" },
+                { value: "12+", label: "Favourite Neighbourhoods" },
+                { value: "3", label: "Core Service Lines" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="group border border-white/8 bg-white/[0.03] p-5 text-center transition-colors duration-300 hover:border-gold/30 hover:bg-white/[0.06]"
+                >
+                  <p className="text-3xl font-heading text-gold-light md:text-4xl">
+                    {stat.value}
+                  </p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.2em] text-white/48">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <Link
+              href="/about"
+              className="group mt-10 inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.22em] text-gold-light transition-colors duration-300 hover:text-white"
+            >
+              Read More About Theresa
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.8} />
+            </Link>
           </div>
         </section>
 
-        {/* Featured Listings */}
-        <section className="py-28 md:py-36 bg-dark-deep">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
-              <div>
-                <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-4">
-                  Our Properties
+        {/* ── Featured Listings ────────────────────────────────────────── */}
+        <section className="bg-[#171311] py-24 md:py-28">
+          <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16 xl:px-24">
+            <div className="text-center">
+              <div className="inline-flex items-center gap-3">
+                <span className="h-px w-10 bg-gold/60" />
+                <p className="text-xs uppercase tracking-[0.38em] text-gold">
+                  Properties Showcase
                 </p>
-                <h2 className="text-4xl md:text-5xl font-heading text-white">
-                  Featured <span className="italic">Listings</span>
-                </h2>
+                <span className="h-px w-10 bg-gold/60" />
               </div>
-              <p className="text-gray-600 text-sm max-w-md mt-4 md:mt-0 leading-relaxed">
-                Explore our curated selection of exceptional properties, each chosen
-                for its unique character and investment potential.
+              <h2 className="mx-auto mt-5 max-w-2xl text-4xl font-heading text-white md:text-5xl">
+                Toronto homes, curated with design and creativity in mind.
+              </h2>
+              <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/55">
+                A tighter selection of active listings across the city&apos;s most
+                loved neighbourhoods — from Baby Point to the Distillery District.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-white/5 mb-12">
-              {featuredListings.map((listing) => (
+            <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:gap-7">
+              {featuredListings.map((listing, index) => (
                 <Link
                   key={listing.id}
                   href={`/listings/${listing.id}`}
-                  className="bg-dark-deep group cursor-pointer block hover:bg-dark-card transition-all duration-500"
+                  className={`group overflow-hidden rounded-[1.75rem] border border-white/8 bg-[#221c18] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(0,0,0,0.5)] ${
+                    index === 1 ? "lg:translate-y-6" : ""
+                  }`}
                 >
-                  <div className="relative overflow-hidden aspect-[4/3]">
+                  <div className="relative overflow-hidden">
                     <img
                       src={listing.image}
                       alt={listing.address}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                      className="aspect-[4/4.6] w-full object-cover transition-transform duration-700 group-hover:scale-107"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute top-5 left-5">
-                      <span className="text-[11px] tracking-[0.15em] uppercase px-4 py-2 font-body font-medium bg-gold text-white">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#171311] via-[#171311]/15 to-transparent" />
+
+                    {/* Status badge */}
+                    <div className="absolute left-5 top-5">
+                      <span className="bg-white px-4 py-2 text-[11px] font-medium uppercase tracking-[0.18em] text-dark">
                         {listing.status}
                       </span>
                     </div>
+
+                    {/* Price overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <p className="text-3xl font-heading text-white">{listing.price}</p>
+                      <p className="mt-1 text-sm uppercase tracking-[0.18em] text-gold-light">
+                        {listing.propertyType}
+                      </p>
+                    </div>
                   </div>
-                  <div className="p-7">
-                    <p className="text-gold text-xs tracking-wider font-body font-medium mb-1">
-                      LISTED AT
+
+                  <div className="p-5">
+                    <div className="flex items-start gap-3">
+                      <MapPin className="mt-1 h-4 w-4 flex-shrink-0 text-gold-light" strokeWidth={1.8} />
+                      <div>
+                        <p className="text-lg font-medium text-white">{listing.address}</p>
+                        <p className="mt-0.5 text-sm text-white/50">{listing.city}</p>
+                      </div>
+                    </div>
+
+                    <p className="mt-4 text-sm leading-7 text-white/58">
+                      {listing.description}
                     </p>
-                    <p className="text-2xl font-heading font-bold text-white mb-3">
-                      {listing.price}
-                    </p>
-                    <p className="text-white/80 font-medium text-sm">
-                      {listing.address}
-                    </p>
-                    <p className="text-gray-600 text-sm mb-5">{listing.city}</p>
-                    <div className="flex items-center gap-6 pt-5 border-t border-white/5">
-                      <div className="flex items-center gap-2 text-gray-500 text-xs">
-                        <Bed className="w-4 h-4" strokeWidth={1.5} />
+
+                    <div className="mt-5 flex flex-wrap gap-4 border-t border-white/8 pt-4 text-xs text-white/55">
+                      <div className="flex items-center gap-2">
+                        <Bed className="h-4 w-4 text-gold-light" strokeWidth={1.8} />
                         <span>{listing.beds} Beds</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-500 text-xs">
-                        <Bath className="w-4 h-4" strokeWidth={1.5} />
+                      <div className="flex items-center gap-2">
+                        <Bath className="h-4 w-4 text-gold-light" strokeWidth={1.8} />
                         <span>{listing.baths} Baths</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-500 text-xs">
-                        <Maximize className="w-4 h-4" strokeWidth={1.5} />
+                      <div className="flex items-center gap-2">
+                        <Maximize className="h-4 w-4 text-gold-light" strokeWidth={1.8} />
                         <span>{listing.sqft} sqft</span>
                       </div>
                     </div>
@@ -206,52 +313,133 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="text-center">
+            <div className="mt-14 text-center">
               <Link
                 href="/listings"
-                className="inline-block px-10 py-4 bg-white text-dark text-[12px] tracking-[0.15em] uppercase font-body font-medium hover:bg-gold hover:text-white transition-all duration-300"
+                className="group inline-flex items-center gap-3 border border-white/12 px-8 py-4 text-[12px] uppercase tracking-[0.22em] text-white transition-all duration-300 hover:border-gold hover:bg-gold/10"
               >
                 View All Listings
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.8} />
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Testimonial */}
-        <section className="py-28 md:py-36 bg-dark relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[300px] font-heading text-white/[0.02] leading-none select-none pointer-events-none">
-            &ldquo;
-          </div>
-
-          <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-12">
-            <div className="text-center mb-16">
-              <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-4">
-                Testimonials
+        {/* ── Testimonial ──────────────────────────────────────────────── */}
+        <section className="bg-[#f4ede3] py-24 md:py-28">
+          <div className="mx-auto max-w-5xl px-6 text-center lg:px-12">
+            <div className="inline-flex items-center gap-3">
+              <span className="h-px w-10 bg-gold-dark/60" />
+              <p className="text-xs uppercase tracking-[0.38em] text-gold-dark">
+                Testimonies
               </p>
-              <h2 className="text-4xl md:text-5xl font-heading text-white">
-                What Our Clients <span className="italic">Say</span>
-              </h2>
+              <span className="h-px w-10 bg-gold-dark/60" />
             </div>
+            <h2 className="mx-auto mt-5 max-w-2xl text-4xl leading-tight font-heading text-dark md:text-5xl">
+              Stories from clients who found their chapter in Toronto.
+            </h2>
+            <div className="mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-gold-dark to-transparent" />
 
-            <div className="text-center">
-              <div className="flex justify-center gap-1.5 mb-10">
+            <div className="relative mx-auto mt-12 max-w-3xl rounded-[2rem] border border-black/8 bg-white p-7 text-center shadow-[0_24px_60px_rgba(42,30,20,0.08)] md:p-12">
+              {/* Decorative quote mark */}
+              <div className="absolute left-1/2 top-4 -translate-x-1/2 font-heading text-9xl leading-none text-gold/15 select-none">
+                &ldquo;
+              </div>
+
+              <div className="relative flex justify-center gap-1.5">
                 {Array.from({ length: featuredTestimonial.rating }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-gold fill-gold" />
+                  <Star key={i} className="h-4 w-4 fill-gold text-gold" />
                 ))}
               </div>
 
-              <p className="text-white/70 text-xl md:text-2xl leading-relaxed font-heading italic mb-12 max-w-3xl mx-auto">
+              <p className="relative mx-auto mt-6 max-w-2xl text-2xl leading-relaxed font-heading italic text-dark md:text-3xl">
                 &ldquo;{featuredTestimonial.text}&rdquo;
               </p>
 
-              <div className="w-12 h-[1px] bg-gold mx-auto mb-6" />
+              <div className="mt-8 border-t border-black/8 pt-6">
+                <p className="text-lg font-semibold text-dark">{featuredTestimonial.name}</p>
+                <div className="mt-1 flex items-center justify-center gap-2">
+                  <span className="h-px w-6 bg-gold-dark/50" />
+                  <p className="text-xs uppercase tracking-[0.22em] text-gold-dark">
+                    {featuredTestimonial.role}
+                  </p>
+                  <span className="h-px w-6 bg-gold-dark/50" />
+                </div>
+              </div>
 
-              <p className="font-heading font-semibold text-lg text-white tracking-wide">
-                {featuredTestimonial.name}
+              <div className="mt-10 grid gap-6 border-t border-black/8 pt-8 sm:grid-cols-3">
+                    {[
+                      { icon: CalendarDays, label: "Responsive", value: "Quick replies, steady updates" },
+                      { icon: MapPin, label: "Toronto-Wide", value: "Baby Point to Cabbagetown coverage" },
+                      { icon: Compass, label: "Clear Advice", value: "Direct guidance with no guesswork" },
+                    ].map((item) => (
+                      <div key={item.label} className="flex flex-col items-center text-center">
+                        <div className="flex h-9 w-9 items-center justify-center border border-gold-dark/25 bg-gold/[0.06]">
+                          <item.icon className="h-4 w-4 text-gold-dark" strokeWidth={1.8} />
+                        </div>
+                        <p className="mt-3 text-xs uppercase tracking-[0.18em] text-dark">
+                          {item.label}
+                        </p>
+                        <p className="mt-1.5 text-sm leading-6 text-gray-700">{item.value}</p>
+                      </div>
+                    ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Favourite Toronto Neighbourhoods ─────────────────────────── */}
+        <section className="relative overflow-hidden bg-dark-deep py-24 md:py-28">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+          <div className="absolute left-1/2 top-0 h-64 w-[28rem] -translate-x-1/2 rounded-full bg-gold/[0.05] blur-[80px]" />
+
+          <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-16 xl:px-24">
+            <div className="text-center">
+              <div className="inline-flex items-center gap-3">
+                <span className="h-px w-10 bg-gold/50" />
+                <p className="text-xs uppercase tracking-[0.38em] text-gold">
+                  Favourite Toronto Neighbourhoods
+                </p>
+                <span className="h-px w-10 bg-gold/50" />
+              </div>
+              <h2 className="mt-6 text-4xl font-heading text-white md:text-5xl">
+                Where Theresa knows the <span className="italic text-gold-light">blocks</span> best.
+              </h2>
+              <p className="mx-auto mt-5 max-w-xl text-[15px] leading-8 text-white/55">
+                A working list of the Toronto neighbourhoods Theresa returns to
+                most — each with its own rhythm, character, and resale story.
               </p>
-              <p className="text-gold text-xs tracking-[0.2em] uppercase mt-2 font-body">
-                {featuredTestimonial.role}
+            </div>
+
+            <div className="mt-14 grid grid-cols-2 gap-[1px] bg-white/8 sm:grid-cols-3 md:grid-cols-4">
+              {neighbourhoods.map((name) => (
+                <div
+                  key={name}
+                  className="group flex items-center justify-between gap-4 bg-dark-deep px-6 py-7 transition-colors duration-300 hover:bg-white/[0.04]"
+                >
+                  <div className="flex items-center gap-3">
+                    <MapPin className="h-4 w-4 text-gold-light" strokeWidth={1.6} />
+                    <p className="text-sm text-white/80 group-hover:text-white">{name}</p>
+                  </div>
+                  <ArrowRight className="h-3.5 w-3.5 text-gold-light/40 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-gold-light" strokeWidth={1.6} />
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-16 border-t border-white/8 pt-10">
+              <p className="text-center text-[11px] uppercase tracking-[0.32em] text-white/45">
+                Trusted By Leading Developers
               </p>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
+                {developerPartners.map((name) => (
+                  <p
+                    key={name}
+                    className="font-heading text-xl italic text-white/60 transition-colors duration-300 hover:text-gold-light md:text-2xl"
+                  >
+                    {name}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         </section>

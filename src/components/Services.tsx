@@ -49,7 +49,7 @@ const services = [
 export default function Services() {
   return (
     <section id="services" className="py-24 md:py-32 bg-dark text-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-20">
           <div className="inline-flex items-center gap-4 mb-4">

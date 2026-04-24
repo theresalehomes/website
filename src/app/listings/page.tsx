@@ -31,7 +31,7 @@ export default function ListingsPage() {
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-dark-deep/80 to-dark-deep" />
-          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 text-center">
             <p className="text-gold text-sm tracking-[0.3em] uppercase font-body mb-6">
               Our Properties
             </p>
@@ -43,9 +43,9 @@ export default function ListingsPage() {
 
         {/* Listings */}
         <section className="py-28 md:py-36 bg-dark">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
             {/* Filter Buttons */}
-            <div className="flex flex-wrap gap-3 mb-16">
+            <div className="flex flex-wrap gap-3 mb-16 justify-center">
               {filters.map((filter) => (
                 <button
                   key={filter}
