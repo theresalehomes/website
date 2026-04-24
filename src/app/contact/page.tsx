@@ -1,59 +1,13 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useForm, ValidationError } from "@formspree/react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
-// ─────────────────────────────────────────────────────────────
-// 1. Go to https://formspree.io → sign up (free)
-// 2. Create a new form → set email to: theresalehomes@gmail.com
-// 3. Copy your Form ID and paste it below (replace YOUR_FORM_ID)
-// ─────────────────────────────────────────────────────────────
-const FORMSPREE_ID = "YOUR_FORM_ID";
-
-type Status = "idle" | "loading" | "success" | "error";
-
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    interest: "Buy",
-    message: "",
-  });
-  const [status, setStatus] = useState<Status>("idle");
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setStatus("loading");
-
-    try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          interest: formData.interest,
-          message: formData.message,
-          _subject: `New enquiry from ${formData.name} — Theresa Le Homes`,
-        }),
-      });
-
-      if (res.ok) {
-        setStatus("success");
-        setFormData({ name: "", email: "", phone: "", interest: "Buy", message: "" });
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
-  };
-
-  const isLoading = status === "loading";
+  const [state, handleSubmit] = useForm("xaqavogw");
+  const isLoading = state.submitting;
 
   return (
     <>
@@ -131,7 +85,7 @@ export default function ContactPage() {
               <div className="lg:col-span-3">
 
                 {/* Success state */}
-                {status === "success" ? (
+                {state.succeeded ? (
                   <div className="flex flex-col items-center justify-center text-center py-20 gap-6">
                     <CheckCircle className="w-16 h-16 text-gold" strokeWidth={1} />
                     <h3 className="text-3xl font-heading text-white">Message Sent!</h3>
@@ -139,15 +93,14 @@ export default function ContactPage() {
                       Thank you for reaching out. Theresa will get back to you
                       within 1 business day.
                     </p>
-                    <button
-                      onClick={() => setStatus("idle")}
-                      className="mt-4 px-10 py-4 bg-white text-dark text-[12px] tracking-[0.15em] uppercase font-body font-medium hover:bg-gold hover:text-white transition-all duration-300"
-                    >
-                      Send Another Message
-                    </button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit}>
+                    <input
+                      type="hidden"
+                      name="_subject"
+                      value="New enquiry from Theresa Le Homes website"
+                    />
                     <div className="grid md:grid-cols-2 gap-x-8">
                       {/* Name */}
                       <div className="py-4 border-b border-white/10">
@@ -156,10 +109,9 @@ export default function ContactPage() {
                         </label>
                         <input
                           type="text"
+                          name="name"
                           required
                           disabled={isLoading}
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full bg-transparent text-white text-[15px] focus:outline-none placeholder:text-gray-700 disabled:opacity-50"
                           placeholder="John Doe"
                         />
@@ -172,12 +124,17 @@ export default function ContactPage() {
                         </label>
                         <input
                           type="email"
+                          name="email"
                           required
                           disabled={isLoading}
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           className="w-full bg-transparent text-white text-[15px] focus:outline-none placeholder:text-gray-700 disabled:opacity-50"
                           placeholder="john@example.com"
+                        />
+                        <ValidationError
+                          prefix="Email"
+                          field="email"
+                          errors={state.errors}
+                          className="mt-2 text-sm text-red-400"
                         />
                       </div>
 
@@ -188,9 +145,8 @@ export default function ContactPage() {
                         </label>
                         <input
                           type="tel"
+                          name="phone"
                           disabled={isLoading}
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="w-full bg-transparent text-white text-[15px] focus:outline-none placeholder:text-gray-700 disabled:opacity-50"
                           placeholder="(408) 555-0123"
                         />
@@ -202,9 +158,9 @@ export default function ContactPage() {
                           Interested In
                         </label>
                         <select
+                          name="interest"
                           disabled={isLoading}
-                          value={formData.interest}
-                          onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
+                          defaultValue="Buy"
                           className="w-full bg-transparent text-white text-[15px] focus:outline-none appearance-none cursor-pointer disabled:opacity-50"
                         >
                           <option value="Buy" className="bg-dark">Buy</option>
@@ -222,27 +178,35 @@ export default function ContactPage() {
                         Your Message *
                       </label>
                       <textarea
+                        name="message"
                         required
                         rows={5}
                         disabled={isLoading}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         className="w-full bg-transparent text-white text-[15px] focus:outline-none resize-none placeholder:text-gray-700 disabled:opacity-50"
                         placeholder="Tell us about your real estate needs..."
+                      />
+                      <ValidationError
+                        prefix="Message"
+                        field="message"
+                        errors={state.errors}
+                        className="mt-2 text-sm text-red-400"
                       />
                     </div>
 
                     {/* Error banner */}
-                    {status === "error" && (
+                    {state.errors && (
                       <div className="flex items-center gap-3 mt-6 text-red-400">
                         <AlertCircle className="w-4 h-4 shrink-0" />
-                        <p className="text-sm">
-                          Something went wrong. Please try again or email us directly at{" "}
-                          <a href="mailto:theresalehomes@gmail.com" className="underline">
-                            theresalehomes@gmail.com
-                          </a>
-                          .
-                        </p>
+                        <div className="text-sm">
+                          <ValidationError errors={state.errors} />
+                          <p>
+                            If the problem continues, email us directly at{" "}
+                            <a href="mailto:theresalehomes@gmail.com" className="underline">
+                              theresalehomes@gmail.com
+                            </a>
+                            .
+                          </p>
+                        </div>
                       </div>
                     )}
 
