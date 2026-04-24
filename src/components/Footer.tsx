@@ -11,17 +11,8 @@ const quickLinks = [
 
 const socialLinks = [
   {
-    label: "Facebook",
-    href: "#",
-    svg: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-      </svg>
-    ),
-  },
-  {
     label: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/theresalehomes/?next=%2F",
     svg: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -32,10 +23,19 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/in/theresa-le-homes-5baa022ba/",
     svg: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
         <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z" />
+      </svg>
+    ),
+  },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@theresa.le.homes?lang=en",
+    svg: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.35h-3.18v12.36a2.9 2.9 0 1 1-2-2.77V8.69a6.08 6.08 0 1 0 5.14 6v-6.3a8 8 0 0 0 4.81 1.6V6.69z" />
       </svg>
     ),
   },
@@ -64,6 +64,8 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
+                  target="_blank"
+                  rel="noreferrer"
                   className="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-600 hover:border-gold hover:text-gold transition-all duration-300"
                 >
                   {social.svg}
@@ -103,7 +105,7 @@ export default function Footer() {
               </div>
               <div className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-gold mt-0.5 shrink-0" strokeWidth={1.5} />
-                <span className="text-gray-600 text-sm">info@theresalehomes.com</span>
+                <span className="text-gray-600 text-sm">theresa@theresalehomes.com</span>
               </div>
               <div className="flex items-start gap-3">
                 <Globe className="w-4 h-4 text-gold mt-0.5 shrink-0" strokeWidth={1.5} />

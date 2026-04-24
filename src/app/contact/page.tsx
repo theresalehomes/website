@@ -54,7 +54,7 @@ export default function ContactPage() {
                 <div className="space-y-8">
                   {[
                     { Icon: Phone, label: "Phone", value: "(408) 555-0123" },
-                    { Icon: Mail, label: "Email", value: "theresalehomes@gmail.com" },
+                    { Icon: Mail, label: "Email", value: "theresa@theresalehomes.com" },
                     {
                       Icon: MapPin,
                       label: "Office",
@@ -201,8 +201,8 @@ export default function ContactPage() {
                           <ValidationError errors={state.errors} />
                           <p>
                             If the problem continues, email us directly at{" "}
-                            <a href="mailto:theresalehomes@gmail.com" className="underline">
-                              theresalehomes@gmail.com
+                            <a href="mailto:theresa@theresalehomes.com" className="underline">
+                              theresa@theresalehomes.com
                             </a>
                             .
                           </p>

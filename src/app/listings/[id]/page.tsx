@@ -284,7 +284,7 @@ export default function ListingDetailPage({
                     </div>
                     <div className="flex items-center gap-3">
                       <Mail className="w-4 h-4 text-gold" strokeWidth={1.5} />
-                      <span className="text-gray-500 text-sm">info@theresalehomes.com</span>
+                      <span className="text-gray-500 text-sm">theresa@theresalehomes.com</span>
                     </div>
                   </div>
 
