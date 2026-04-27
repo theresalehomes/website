@@ -264,7 +264,7 @@ export default function ListingDetailPage({
                   <div className="text-center mb-8">
                     <div className="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full">
                       <img
-                        src="/images/theresa.webp"
+                        src="/images/theresa.jpeg"
                         alt="Theresa Le"
                         className="w-full h-full object-cover"
                       />

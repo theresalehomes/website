@@ -37,7 +37,7 @@ const teamMembers = [
     name: "Theresa Le",
     role: "Founder & Lead Agent",
     image:
-      "/images/theresa.webp",
+      "/images/theresa.jpeg",
     description:
       "With over 15 years in real estate, Theresa has built a reputation for exceptional service, market knowledge, and results-driven strategies.",
   },
@@ -91,7 +91,7 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="aspect-[3/4] overflow-hidden">
                   <img
-                    src="/images/theresa.webp"
+                    src="/images/theresa.jpeg"
                     alt="Theresa Le - Real Estate Professional"
                     className="w-full h-full object-cover"
                   />

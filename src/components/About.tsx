@@ -24,7 +24,7 @@ export default function About() {
           <div className="relative">
             <div className="aspect-[3/4] overflow-hidden">
               <img
-                src="/images/theresa.webp"
+                src="/images/theresa.jpeg"
                 alt="Theresa Le - Real Estate Professional"
                 className="w-full h-full object-cover"
               />

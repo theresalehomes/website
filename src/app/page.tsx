@@ -172,7 +172,7 @@ export default function Home() {
               <div className="absolute -right-6 -bottom-6 hidden h-40 w-40 rounded-full bg-gold/[0.08] blur-[50px] sm:block" />
               <div className="relative overflow-hidden rounded-[2rem] shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
                 <img
-                  src="/images/theresa.webp"
+                  src="/images/theresa.jpeg"
                   alt="Theresa Le - Real Estate Professional"
                   className="aspect-[4/5] w-full object-cover"
                 />
