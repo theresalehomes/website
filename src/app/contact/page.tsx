@@ -58,7 +58,7 @@ export default function ContactPage() {
                     {
                       Icon: MapPin,
                       label: "Office",
-                      value: "123 Main Street, Suite 200\nSan Jose, CA 95113",
+                      value: "340 Ferrier St Unit 3\nMarkham, ON L3R 2Z5",
                     },
                     {
                       Icon: Clock,
@@ -238,9 +238,9 @@ export default function ContactPage() {
               <div className="text-center">
                 <MapPin className="w-12 h-12 text-gold mx-auto mb-4" strokeWidth={1} />
                 <p className="text-white/80 text-lg font-heading">
-                  123 Main Street, Suite 200
+                  340 Ferrier St Unit 3
                 </p>
-                <p className="text-gray-600 text-sm">San Jose, CA 95113</p>
+                <p className="text-gray-600 text-sm">Markham, ON L3R 2Z5</p>
               </div>
             </div>
           </div>

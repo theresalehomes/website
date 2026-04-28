@@ -72,9 +72,9 @@ export default function Contact() {
                     Office
                   </p>
                   <p className="text-white text-[15px]">
-                    123 Main Street, Suite 200
+                    340 Ferrier St Unit 3
                     <br />
-                    San Jose, CA 95113
+                    Markham, ON L3R 2Z5
                   </p>
                 </div>
               </div>
