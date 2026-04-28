@@ -58,20 +58,6 @@ export default function Footer() {
               the perfect property that matches your lifestyle and investment
               goals.
             </p>
-            <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-600 hover:border-gold hover:text-gold transition-all duration-300"
-                >
-                  {social.svg}
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -118,6 +104,25 @@ export default function Footer() {
                   <br />
                   San Jose, CA 95113
                 </span>
+              </div>
+            </div>
+            <div className="mt-8">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-white/55 mb-4">
+                Follow
+              </p>
+              <div className="flex gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    aria-label={social.label}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-600 hover:border-gold hover:text-gold transition-all duration-300"
+                  >
+                    {social.svg}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
