@@ -58,6 +58,25 @@ export default function Footer() {
               the perfect property that matches your lifestyle and investment
               goals.
             </p>
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.15em] text-white/55 mb-4">
+                Follow
+              </p>
+              <div className="flex gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    aria-label={social.label}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-600 hover:border-gold hover:text-gold transition-all duration-300"
+                  >
+                    {social.svg}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -105,24 +124,30 @@ export default function Footer() {
                   San Jose, CA 95113
                 </span>
               </div>
-            </div>
-            <div className="mt-8">
-              <p className="text-[11px] uppercase tracking-[0.15em] text-white/55 mb-4">
-                Follow
-              </p>
-              <div className="flex gap-3">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-600 hover:border-gold hover:text-gold transition-all duration-300"
+              <div className="flex items-start gap-3">
+                <span className="text-gold mt-0.5 shrink-0">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-4 h-4"
                   >
-                    {social.svg}
-                  </a>
-                ))}
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                  </svg>
+                </span>
+                <a
+                  href="https://www.instagram.com/theresalehomes/?next=%2F"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-gray-600 text-sm hover:text-gold transition-colors duration-300"
+                >
+                  @theresalehomes
+                </a>
               </div>
             </div>
           </div>
