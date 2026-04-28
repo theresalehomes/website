@@ -4,10 +4,43 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { listings } from "@/data/listings";
-import { Bed, Bath, Maximize } from "lucide-react";
+import {
+  listings,
+  type ListingFact,
+  type ListingIcon,
+} from "@/data/listings";
+import { Bath, Bed, Clock3, Home, Maximize } from "lucide-react";
 
 const filters = ["All", "For Sale", "Pending", "Sold"] as const;
+
+const factIcons: Record<ListingIcon, typeof Bed> = {
+  bed: Bed,
+  bath: Bath,
+  sqft: Maximize,
+  calendar: Home,
+  home: Home,
+  car: Home,
+  clock: Clock3,
+  tag: Home,
+};
+
+function renderCardFacts(facts: ListingFact[]) {
+  return facts.slice(0, 3).map((fact) => {
+    const Icon = factIcons[fact.icon];
+
+    return (
+      <div
+        key={`${fact.label}-${fact.value}`}
+        className="flex items-center gap-2 text-gray-500 text-xs"
+      >
+        <Icon className="w-4 h-4" strokeWidth={1.5} />
+        <span>
+          {fact.value} {fact.label}
+        </span>
+      </div>
+    );
+  });
+}
 
 export default function ListingsPage() {
   const [activeFilter, setActiveFilter] = useState<string>("All");
@@ -100,20 +133,12 @@ export default function ListingsPage() {
                     <p className="text-white/80 font-medium text-sm">
                       {listing.address}
                     </p>
-                    <p className="text-gray-600 text-sm mb-5">{listing.city}</p>
+                    <p className="text-gray-600 text-sm">{listing.city}</p>
+                    <p className="text-gold/80 text-xs tracking-[0.15em] uppercase mt-2 mb-5">
+                      {listing.propertyType}
+                    </p>
                     <div className="flex items-center gap-6 pt-5 border-t border-white/5">
-                      <div className="flex items-center gap-2 text-gray-500 text-xs">
-                        <Bed className="w-4 h-4" strokeWidth={1.5} />
-                        <span>{listing.beds} Beds</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-500 text-xs">
-                        <Bath className="w-4 h-4" strokeWidth={1.5} />
-                        <span>{listing.baths} Baths</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-500 text-xs">
-                        <Maximize className="w-4 h-4" strokeWidth={1.5} />
-                        <span>{listing.sqft} sqft</span>
-                      </div>
+                      {renderCardFacts(listing.cardFacts)}
                     </div>
                   </div>
                 </Link>

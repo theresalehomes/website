@@ -5,7 +5,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { listings } from "@/data/listings";
+import {
+  listings,
+  type ListingFact,
+  type ListingIcon,
+} from "@/data/listings";
 import {
   Bed,
   Bath,
@@ -13,6 +17,8 @@ import {
   Calendar,
   Home,
   Car,
+  Clock3,
+  Tag,
   MapPin,
   ChevronLeft,
   ChevronRight,
@@ -22,6 +28,36 @@ import {
   Mail,
   CheckCircle,
 } from "lucide-react";
+
+const factIcons: Record<ListingIcon, typeof Bed> = {
+  bed: Bed,
+  bath: Bath,
+  sqft: Maximize,
+  calendar: Calendar,
+  home: Home,
+  car: Car,
+  clock: Clock3,
+  tag: Tag,
+};
+
+function renderFactValue(fact: ListingFact) {
+  const Icon = factIcons[fact.icon];
+
+  return (
+    <div
+      key={`${fact.label}-${fact.value}`}
+      className="bg-dark-card p-5 text-center"
+    >
+      <Icon className="w-5 h-5 text-gold mx-auto mb-3" strokeWidth={1.5} />
+      <p className="text-2xl font-heading font-bold text-white">
+        {fact.value}
+      </p>
+      <p className="text-xs text-gray-600 tracking-wider uppercase mt-1 font-body">
+        {fact.label}
+      </p>
+    </div>
+  );
+}
 
 export default function ListingDetailPage({
   params,
@@ -82,18 +118,22 @@ export default function ListingDetailPage({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
-              <button
-                onClick={prevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={nextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
+              {listing.images.length > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </>
+              )}
 
               <div className="absolute bottom-4 right-4 bg-black/60 text-white text-xs tracking-wider font-body px-4 py-2">
                 {currentImage + 1} / {listing.images.length}
@@ -114,25 +154,27 @@ export default function ListingDetailPage({
               </div>
             </div>
 
-            <div className="flex gap-2 mt-2">
-              {listing.images.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentImage(i)}
-                  className={`relative aspect-[16/9] w-24 md:w-32 overflow-hidden transition-all ${
-                    i === currentImage
-                      ? "ring-2 ring-gold"
-                      : "opacity-50 hover:opacity-80"
-                  }`}
-                >
-                  <img
-                    src={img}
-                    alt={`Thumbnail ${i + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
-            </div>
+            {listing.images.length > 1 && (
+              <div className="flex gap-2 mt-2">
+                {listing.images.map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentImage(i)}
+                    className={`relative aspect-[16/9] w-24 md:w-32 overflow-hidden transition-all ${
+                      i === currentImage
+                        ? "ring-2 ring-gold"
+                        : "opacity-50 hover:opacity-80"
+                    }`}
+                  >
+                    <img
+                      src={img}
+                      alt={`Thumbnail ${i + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 
@@ -149,6 +191,10 @@ export default function ListingDetailPage({
                   <p className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
                     {listing.price}
                   </p>
+                  <p className="text-gold text-xs tracking-[0.18em] uppercase font-body mb-3">
+                    {listing.propertyType}
+                    {listing.propertySubType ? ` · ${listing.propertySubType}` : ""}
+                  </p>
                   <div className="flex items-center gap-2 text-gray-500">
                     <MapPin className="w-4 h-4 text-gold" strokeWidth={1.5} />
                     <p className="text-[15px]">
@@ -159,28 +205,7 @@ export default function ListingDetailPage({
 
                 {/* Quick Stats */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-[1px] bg-white/5 mb-12">
-                  {[
-                    { icon: Bed, label: "Bedrooms", value: listing.beds },
-                    { icon: Bath, label: "Bathrooms", value: listing.baths },
-                    { icon: Maximize, label: "Sq Ft", value: listing.sqft },
-                    { icon: Calendar, label: "Year Built", value: listing.yearBuilt },
-                  ].map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="bg-dark-card p-5 text-center"
-                    >
-                      <stat.icon
-                        className="w-5 h-5 text-gold mx-auto mb-3"
-                        strokeWidth={1.5}
-                      />
-                      <p className="text-2xl font-heading font-bold text-white">
-                        {stat.value}
-                      </p>
-                      <p className="text-xs text-gray-600 tracking-wider uppercase mt-1 font-body">
-                        {stat.label}
-                      </p>
-                    </div>
-                  ))}
+                  {listing.quickFacts.map(renderFactValue)}
                 </div>
 
                 {/* Description */}
@@ -199,30 +224,29 @@ export default function ListingDetailPage({
                     Property Details
                   </p>
                   <div className="grid md:grid-cols-2 gap-x-12 gap-y-0">
-                    {[
-                      { label: "Property Type", value: listing.propertyType, icon: Home },
-                      { label: "Lot Size", value: listing.lotSize, icon: Maximize },
-                      { label: "Garage", value: listing.garage, icon: Car },
-                      { label: "Year Built", value: listing.yearBuilt, icon: Calendar },
-                    ].map((detail) => (
-                      <div
-                        key={detail.label}
-                        className="flex items-center justify-between py-4 border-b border-white/5"
-                      >
-                        <div className="flex items-center gap-3">
-                          <detail.icon
-                            className="w-4 h-4 text-gold"
-                            strokeWidth={1.5}
-                          />
-                          <span className="text-gray-500 text-sm">
-                            {detail.label}
+                    {listing.details.map((detail) => {
+                      const Icon = factIcons[detail.icon];
+
+                      return (
+                        <div
+                          key={`${detail.label}-${detail.value}`}
+                          className="flex items-center justify-between py-4 border-b border-white/5"
+                        >
+                          <div className="flex items-center gap-3">
+                            <Icon
+                              className="w-4 h-4 text-gold"
+                              strokeWidth={1.5}
+                            />
+                            <span className="text-gray-500 text-sm">
+                              {detail.label}
+                            </span>
+                          </div>
+                          <span className="text-white font-medium text-sm">
+                            {detail.value}
                           </span>
                         </div>
-                        <span className="text-white font-medium text-sm">
-                          {detail.value}
-                        </span>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
 

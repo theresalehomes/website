@@ -3,11 +3,12 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
-import { listings, testimonials } from "@/data/listings";
+import { listings, testimonials, type ListingFact, type ListingIcon } from "@/data/listings";
 import {
   ArrowRight,
   Bath,
   Bed,
+  Clock3,
   House,
   Key,
   MapPin,
@@ -78,6 +79,32 @@ const developerPartners = [
   "Empire Communities",
   "Minto",
 ];
+
+const factIcons: Record<ListingIcon, typeof Bed> = {
+  bed: Bed,
+  bath: Bath,
+  sqft: Maximize,
+  calendar: House,
+  home: House,
+  car: House,
+  clock: Clock3,
+  tag: House,
+};
+
+function renderCardFacts(facts: ListingFact[]) {
+  return facts.slice(0, 3).map((fact) => {
+    const Icon = factIcons[fact.icon];
+
+    return (
+      <div key={`${fact.label}-${fact.value}`} className="flex items-center gap-2">
+        <Icon className="h-4 w-4 text-gold-light" strokeWidth={1.8} />
+        <span>
+          {fact.value} {fact.label}
+        </span>
+      </div>
+    );
+  });
+}
 
 export default function Home() {
   return (
@@ -237,11 +264,11 @@ export default function Home() {
                 <span className="h-px w-10 bg-gold/60" />
               </div>
               <h2 className="mx-auto mt-5 max-w-2xl text-4xl font-heading text-white md:text-5xl">
-                Toronto homes, curated with design and creativity in mind.
+                Toronto listings, curated with design and creativity in mind.
               </h2>
               <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/55">
-                A tighter selection of active listings across the city&apos;s most
-                loved neighbourhoods — from Baby Point to the Distillery District.
+                A tighter selection of active Toronto properties across residential,
+                commercial, and loft opportunities.
               </p>
             </div>
 
@@ -273,7 +300,7 @@ export default function Home() {
                     <div className="absolute bottom-0 left-0 right-0 p-5">
                       <p className="text-3xl font-heading text-white">{listing.price}</p>
                       <p className="mt-1 text-sm uppercase tracking-[0.18em] text-gold-light">
-                        {listing.propertyType}
+                        {listing.propertySubType ?? listing.propertyType}
                       </p>
                     </div>
                   </div>
@@ -292,18 +319,7 @@ export default function Home() {
                     </p>
 
                     <div className="mt-5 flex flex-wrap gap-4 border-t border-white/8 pt-4 text-xs text-white/55">
-                      <div className="flex items-center gap-2">
-                        <Bed className="h-4 w-4 text-gold-light" strokeWidth={1.8} />
-                        <span>{listing.beds} Beds</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Bath className="h-4 w-4 text-gold-light" strokeWidth={1.8} />
-                        <span>{listing.baths} Baths</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Maximize className="h-4 w-4 text-gold-light" strokeWidth={1.8} />
-                        <span>{listing.sqft} sqft</span>
-                      </div>
+                      {renderCardFacts(listing.cardFacts)}
                     </div>
                   </div>
                 </Link>
