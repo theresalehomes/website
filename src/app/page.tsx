@@ -2,8 +2,9 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import CallToAction from "@/components/CallToAction";
+import TestimonialsRotator from "@/components/TestimonialsRotator";
 import Footer from "@/components/Footer";
-import { listings, testimonials, type ListingFact, type ListingIcon } from "@/data/listings";
+import { listings, type ListingFact, type ListingIcon } from "@/data/listings";
 import {
   ArrowRight,
   Bath,
@@ -14,7 +15,6 @@ import {
   MapPin,
   Maximize,
   Sparkles,
-  Star,
 } from "lucide-react";
 
 const featuredListings = listings.filter((l) => l.status === "For Sale").slice(0, 3);
@@ -252,6 +252,8 @@ export default function Home() {
           </div>
         </section>
 
+        <TestimonialsRotator />
+
         {/* ── Featured Listings ────────────────────────────────────────── */}
         <section className="bg-[#171311] py-24 md:py-28">
           <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16 xl:px-24">
@@ -334,62 +336,6 @@ export default function Home() {
                 View All Listings
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.8} />
               </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* ── Testimonial ──────────────────────────────────────────────── */}
-        <section className="bg-[#f4ede3] py-24 md:py-28">
-          <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16 xl:px-24">
-            <div className="text-center">
-              <div className="inline-flex items-center gap-3">
-                <span className="h-px w-10 bg-gold-dark/60" />
-                <p className="text-xs uppercase tracking-[0.38em] text-gold-dark">
-                  Testimonies
-                </p>
-                <span className="h-px w-10 bg-gold-dark/60" />
-              </div>
-              <h2 className="mx-auto mt-5 max-w-2xl text-4xl leading-tight font-heading text-dark md:text-5xl">
-                Stories from clients who found their chapter in Toronto.
-              </h2>
-              <div className="mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-gold-dark to-transparent" />
-            </div>
-
-            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map((t) => (
-                <div
-                  key={t.name}
-                  className="group relative overflow-hidden rounded-[1.5rem] border border-black/8 bg-white p-7 shadow-[0_16px_40px_rgba(42,30,20,0.07)] transition-shadow duration-300 hover:shadow-[0_24px_55px_rgba(42,30,20,0.13)]"
-                >
-                  <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-gold to-gold-light opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                  <div className="flex gap-1">
-                    {Array.from({ length: t.rating }).map((_, i) => (
-                      <Star key={i} className="h-3.5 w-3.5 fill-gold text-gold" />
-                    ))}
-                  </div>
-
-                  <p className="mt-4 text-[14px] leading-7 text-gray-700 italic">
-                    &ldquo;{t.text}&rdquo;
-                  </p>
-
-                  <div className="mt-6 flex items-center gap-3 border-t border-black/8 pt-5">
-                    <div className="h-11 w-11 flex-shrink-0 overflow-hidden rounded-full border-2 border-gold/30">
-                      <img
-                        src={t.image}
-                        alt={t.name}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-dark">{t.name}</p>
-                      <p className="mt-0.5 text-[11px] uppercase tracking-[0.18em] text-gold-dark">
-                        {t.role}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </section>

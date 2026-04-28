@@ -34,6 +34,14 @@ export interface Listing {
   features: string[];
 }
 
+export interface Testimonial {
+  name: string;
+  role: string;
+  text: string;
+  rating: number;
+  image: string;
+}
+
 export const listings: Listing[] = [
   {
     id: "e13028194",
@@ -332,27 +340,48 @@ export const listings: Listing[] = [
   },
 ];
 
-export const testimonials = [
+export const testimonials: Testimonial[] = [
   {
-    name: "Sophia Chen",
-    role: "Buyer · High Park",
-    text: "Theresa made every step feel thoughtful and calm. We found a home that felt exactly like us, and the process never once felt transactional.",
+    name: "Carmen Paredes",
+    role: "Vaughan Mills · Vaughan",
+    text: "My experience with Theresa Le was a soothing, comfortable, no pressure experience. She always had answers for me and if she didn't she would go out of her way to make sure she got them. She is very prompt on call backs and very educated in her line of business. I couldn't ask for anything better in a realtor. She is truly the total package and I highly recommend her! What I like most about her is she's not about the commission. She truly give you the best advice and wants to make sure you are getting the best value! Thank you Theresa Le for all your help and I will be seeing you in the near future!",
     rating: 5,
     image: "/images/testimonies/tmp553zpgay.webp",
   },
   {
-    name: "Daniel Martin",
-    role: "Seller · Distillery District",
-    text: "From strategy to staging, Theresa saw the details we would have missed. The presentation felt elevated and the result exceeded our expectations.",
+    name: "Frank Ieraci",
+    role: "Parklawn & Lake Shore · Toronto",
+    text: "I have had the privilege to have Theresa Le as my real estate agent. She was a pleasure to work with and she really cares for people. Theresa is so helpful in every way! I am so happy that I chose Theresa as my agent. I guarantee anyone that has met her would feel the same. I would never choose any one else. Thank you Theresa!",
     rating: 5,
     image: "/images/testimonies/tmp_bs6e2ir.webp",
   },
   {
-    name: "Priya Nair",
-    role: "Buyer · Roncesvalles",
-    text: "We came in overwhelmed and left with clarity. Theresa listens deeply, moves quickly, and somehow makes a complex market feel approachable.",
+    name: "Maria Elena Stern",
+    role: "King West · Toronto",
+    text: "Looking for a condo in downtown Toronto can be a daunting experience, and finding a good real estate agent who cares about your needs is key. I was fortunate enough to meet Theresa Le. It was so easy to work with her, she knew right away what I was looking for. We looked everywhere in my area of choice, and when the right condo came up, and the offer was presented, there was another offer! Oh my God Theresa knew well how to handle it. Needless to say we will use her again. The best part, after closing the deal was the fun Japanese dinner at my favourite restaurant with her.",
     rating: 5,
     image: "/images/testimonies/tmpccn_x2la.webp",
+  },
+  {
+    name: "Rachel Csontos",
+    role: "King West · Toronto",
+    text: "Theresa Le sold my condo in approximately 48 hours for full price. Possibly a world record! I highly recommend her services.",
+    rating: 5,
+    image: "/images/testimonies/tmplm1d6ozb.webp",
+  },
+  {
+    name: "Sam Short and Thy Short",
+    role: "Markham",
+    text: "Theresa has made our first home purchase seamless and easy. Her knowledge of the markets and her ability to negotiate made our experience great. I would extremely likely recommend her for all your real estate needs.",
+    rating: 5,
+    image: "/images/testimonies/tmprcyapzki.webp",
+  },
+  {
+    name: "Michael Spatafora",
+    role: "Little Italy College St · Toronto",
+    text: "I spent months with other agents who all told me I couldn't afford a house in the neighborhood I wanted, but Theresa found my dream home in only 2 weeks! Theresa is energetic and aggressive, I've recommended her my closest friends.",
+    rating: 5,
+    image: "/images/testimonies/tmpu39_7x3h.webp",
   },
 ];
 
