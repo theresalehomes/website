@@ -223,7 +223,7 @@ export default function Home() {
             {/* Stats */}
             <div className="mx-auto mt-10 grid max-w-3xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { value: "7+", label: "Years In Real Estate" },
+                { value: "10+", label: "Years In Real Estate" },
                 { value: "4", label: "Top Developer Partners" },
                 { value: "12+", label: "Favourite Neighbourhoods" },
                 { value: "3", label: "Core Service Lines" },
