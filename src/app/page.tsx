@@ -8,8 +8,6 @@ import {
   ArrowRight,
   Bath,
   Bed,
-  CalendarDays,
-  Compass,
   House,
   Key,
   MapPin,
@@ -19,7 +17,6 @@ import {
 } from "lucide-react";
 
 const featuredListings = listings.filter((l) => l.status === "For Sale").slice(0, 3);
-const featuredTestimonial = testimonials[0];
 
 const servicePillars = [
   {
@@ -327,63 +324,56 @@ export default function Home() {
 
         {/* ── Testimonial ──────────────────────────────────────────────── */}
         <section className="bg-[#f4ede3] py-24 md:py-28">
-          <div className="mx-auto max-w-5xl px-6 text-center lg:px-12">
-            <div className="inline-flex items-center gap-3">
-              <span className="h-px w-10 bg-gold-dark/60" />
-              <p className="text-xs uppercase tracking-[0.38em] text-gold-dark">
-                Testimonies
-              </p>
-              <span className="h-px w-10 bg-gold-dark/60" />
+          <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16 xl:px-24">
+            <div className="text-center">
+              <div className="inline-flex items-center gap-3">
+                <span className="h-px w-10 bg-gold-dark/60" />
+                <p className="text-xs uppercase tracking-[0.38em] text-gold-dark">
+                  Testimonies
+                </p>
+                <span className="h-px w-10 bg-gold-dark/60" />
+              </div>
+              <h2 className="mx-auto mt-5 max-w-2xl text-4xl leading-tight font-heading text-dark md:text-5xl">
+                Stories from clients who found their chapter in Toronto.
+              </h2>
+              <div className="mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-gold-dark to-transparent" />
             </div>
-            <h2 className="mx-auto mt-5 max-w-2xl text-4xl leading-tight font-heading text-dark md:text-5xl">
-              Stories from clients who found their chapter in Toronto.
-            </h2>
-            <div className="mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-gold-dark to-transparent" />
 
-            <div className="relative mx-auto mt-12 max-w-3xl rounded-[2rem] border border-black/8 bg-white p-7 text-center shadow-[0_24px_60px_rgba(42,30,20,0.08)] md:p-12">
-              {/* Decorative quote mark */}
-              <div className="absolute left-1/2 top-4 -translate-x-1/2 font-heading text-9xl leading-none text-gold/15 select-none">
-                &ldquo;
-              </div>
+            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map((t) => (
+                <div
+                  key={t.name}
+                  className="group relative overflow-hidden rounded-[1.5rem] border border-black/8 bg-white p-7 shadow-[0_16px_40px_rgba(42,30,20,0.07)] transition-shadow duration-300 hover:shadow-[0_24px_55px_rgba(42,30,20,0.13)]"
+                >
+                  <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-gold to-gold-light opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-              <div className="relative flex justify-center gap-1.5">
-                {Array.from({ length: featuredTestimonial.rating }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-gold text-gold" />
-                ))}
-              </div>
-
-              <p className="relative mx-auto mt-6 max-w-2xl text-2xl leading-relaxed font-heading italic text-dark md:text-3xl">
-                &ldquo;{featuredTestimonial.text}&rdquo;
-              </p>
-
-              <div className="mt-8 border-t border-black/8 pt-6">
-                <p className="text-lg font-semibold text-dark">{featuredTestimonial.name}</p>
-                <div className="mt-1 flex items-center justify-center gap-2">
-                  <span className="h-px w-6 bg-gold-dark/50" />
-                  <p className="text-xs uppercase tracking-[0.22em] text-gold-dark">
-                    {featuredTestimonial.role}
-                  </p>
-                  <span className="h-px w-6 bg-gold-dark/50" />
-                </div>
-              </div>
-
-              <div className="mt-10 grid gap-6 border-t border-black/8 pt-8 sm:grid-cols-3">
-                    {[
-                      { icon: CalendarDays, label: "Responsive", value: "Quick replies, steady updates" },
-                      { icon: MapPin, label: "Toronto-Wide", value: "Baby Point to Cabbagetown coverage" },
-                      { icon: Compass, label: "Clear Advice", value: "Direct guidance with no guesswork" },
-                    ].map((item) => (
-                      <div key={item.label} className="flex flex-col items-center text-center">
-                        <div className="flex h-9 w-9 items-center justify-center border border-gold-dark/25 bg-gold/[0.06]">
-                          <item.icon className="h-4 w-4 text-gold-dark" strokeWidth={1.8} />
-                        </div>
-                        <p className="mt-3 text-xs uppercase tracking-[0.18em] text-dark">
-                          {item.label}
-                        </p>
-                        <p className="mt-1.5 text-sm leading-6 text-gray-700">{item.value}</p>
-                      </div>
+                  <div className="flex gap-1">
+                    {Array.from({ length: t.rating }).map((_, i) => (
+                      <Star key={i} className="h-3.5 w-3.5 fill-gold text-gold" />
                     ))}
-              </div>
+                  </div>
+
+                  <p className="mt-4 text-[14px] leading-7 text-gray-700 italic">
+                    &ldquo;{t.text}&rdquo;
+                  </p>
+
+                  <div className="mt-6 flex items-center gap-3 border-t border-black/8 pt-5">
+                    <div className="h-11 w-11 flex-shrink-0 overflow-hidden rounded-full border-2 border-gold/30">
+                      <img
+                        src={t.image}
+                        alt={t.name}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-dark">{t.name}</p>
+                      <p className="mt-0.5 text-[11px] uppercase tracking-[0.18em] text-gold-dark">
+                        {t.role}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

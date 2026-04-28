@@ -221,27 +221,45 @@ export const listings: Listing[] = [
 export const testimonials = [
   {
     name: "Michael & Sarah Johnson",
-    role: "Home Buyers",
+    role: "Home Buyers · Bloor West Village",
     text: "Theresa made our home buying experience seamless and stress-free. Her knowledge of the local market helped us find our dream home at the right price. We couldn't be happier!",
     rating: 5,
+    image: "/images/testimonies/tmp553zpgay.webp",
   },
   {
     name: "David Chen",
-    role: "Home Seller",
+    role: "Home Seller · High Park North",
     text: "We sold our home in just 10 days above asking price. Theresa's marketing strategy and negotiation skills were outstanding. She truly goes above and beyond for her clients.",
     rating: 5,
+    image: "/images/testimonies/tmp_bs6e2ir.webp",
   },
   {
     name: "Jessica & Robert Williams",
-    role: "First-Time Buyers",
+    role: "First-Time Buyers · Roncesvalles",
     text: "As first-time buyers, we were nervous about the process. Theresa patiently guided us every step of the way and found us the perfect starter home within our budget.",
     rating: 5,
+    image: "/images/testimonies/tmpccn_x2la.webp",
   },
   {
     name: "Amanda Torres",
-    role: "Property Investor",
+    role: "Property Investor · Junction Area",
     text: "Theresa has helped me acquire multiple investment properties over the years. Her market insights and investment analysis are invaluable. Highly recommend for serious investors.",
     rating: 5,
+    image: "/images/testimonies/tmplm1d6ozb.webp",
+  },
+  {
+    name: "Kevin & Lisa Park",
+    role: "Home Buyers · Baby Point",
+    text: "From the very first showing to the closing table, Theresa was there every step of the way. She found us a rare Baby Point gem we never would have discovered on our own.",
+    rating: 5,
+    image: "/images/testimonies/tmprcyapzki.webp",
+  },
+  {
+    name: "Sophie Tremblay",
+    role: "Home Seller · Swansea",
+    text: "Theresa staged our home beautifully and had it sold in under two weeks. Her calm confidence kept us grounded throughout — we felt fully supported from listing to keys.",
+    rating: 5,
+    image: "/images/testimonies/tmpu39_7x3h.webp",
   },
 ];
 
