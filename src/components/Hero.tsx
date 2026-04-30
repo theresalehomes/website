@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Home, Key, MessageCircle } from "lucide-react";
 
 const highlights = [
-  { label: "Years In Toronto Real Estate", value: "7+" },
+  { label: "Years In Toronto Real Estate", value: "10+" },
   { label: "Top Developer Partners", value: "4" },
   { label: "Core Service Lines", value: "Buy · Sell · Lease" },
 ];
