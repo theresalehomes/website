@@ -47,7 +47,7 @@ export default function Contact() {
                   <p className="text-[11px] text-gray-600 tracking-[0.2em] uppercase mb-1">
                     Phone
                   </p>
-                  <p className="text-white text-[15px]">(408) 555-0123</p>
+                  <p className="text-white text-[15px]">+1 (416) 995-4602</p>
                 </div>
               </div>
               <div className="flex items-start gap-5">
@@ -126,7 +126,7 @@ export default function Contact() {
                       setFormData({ ...formData, phone: e.target.value })
                     }
                     className="w-full bg-transparent text-white text-[15px] focus:outline-none placeholder:text-gray-700"
-                    placeholder="(408) 555-0123"
+                    placeholder="+1 (416) 995-4602"
                   />
                 </div>
                 <div className="py-4 border-b border-gray-800">

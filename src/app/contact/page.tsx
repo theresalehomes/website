@@ -53,7 +53,7 @@ export default function ContactPage() {
 
                 <div className="space-y-8">
                   {[
-                    { Icon: Phone, label: "Phone", value: "(408) 555-0123" },
+                    { Icon: Phone, label: "Phone", value: "+1 (416) 995-4602" },
                     { Icon: Mail, label: "Email", value: "theresa@theresalehomes.com" },
                     {
                       Icon: MapPin,
@@ -148,7 +148,7 @@ export default function ContactPage() {
                           name="phone"
                           disabled={isLoading}
                           className="w-full bg-transparent text-white text-[15px] focus:outline-none placeholder:text-gray-700 disabled:opacity-50"
-                          placeholder="(408) 555-0123"
+                          placeholder="+1 (416) 995-4602"
                         />
                       </div>
 
