@@ -51,7 +51,7 @@ export default function ContactPage() {
                   start your real estate journey together.
                 </p>
 
-                <div className="space-y-8">
+                <div className="space-y-8 w-fit mx-auto lg:mx-0">
                   {[
                     { Icon: Phone, label: "Phone", value: "+1 (416) 995-4602" },
                     { Icon: Mail, label: "Email", value: "theresa@theresalehomes.com" },
@@ -66,7 +66,7 @@ export default function ContactPage() {
                       value: "Mon – Fri: 9:00 AM – 6:00 PM\nSat: 10:00 AM – 4:00 PM\nSun: By Appointment",
                     },
                   ].map(({ Icon, label, value }) => (
-                    <div key={label} className="flex items-start gap-5 justify-center lg:justify-start">
+                    <div key={label} className="flex items-start gap-5">
                       <div className="w-12 h-12 border border-white/10 flex items-center justify-center shrink-0">
                         <Icon className="w-4 h-4 text-gold" strokeWidth={1.5} />
                       </div>
